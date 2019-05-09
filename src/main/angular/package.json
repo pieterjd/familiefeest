@@ -23,9 +23,11 @@
     "@angular/router": "7.2.15",
     "core-js": "^2.4.1",
     "rxjs": "^6.5.1",
+    "tslib": "^1.9.0",
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.13.0",
     "@angular/cli": "7.3.9",
     "@angular/compiler-cli": "7.2.15",
     "@angular/language-service": "7.2.15",
