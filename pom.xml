@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.pieterjd</groupId>
-	<artifactId>familiefeest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>familiefeest</name>
-	<description>Website for familiefeest registration</description>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.pieterjd</groupId>
+    <artifactId>familiefeest</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>familiefeest</name>
+    <description>Website for familiefeest registration</description>
 
-	<properties>
-		<java.version>1.8</java.version>
-		<angular.root>src/main/angular</angular.root>
-		<node.version>v10.15.2</node.version>
-		<npm.version>6.4.1</npm.version>
-	</properties>
+    <properties>
+        <java.version>1.8</java.version>
+        <angular.root>src/main/angular</angular.root>
+        <node.version>v10.15.2</node.version>
+        <npm.version>6.4.1</npm.version>
+        <springboot.version>2.1.4.RELEASE</springboot.version>
+    </properties>
 
 	<dependencies>
 		<dependency>
@@ -27,75 +28,93 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>2.1.6.RELEASE</version>
+        </dependency>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-			<groupId>com.github.eirslett</groupId>
-			<artifactId>frontend-maven-plugin</artifactId>
-			<!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
-			<version>1.7.6</version>
-				<executions>
 
-					<execution>
-						<id>install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-						<configuration>
-							<installDirectory>${angular.root}</installDirectory>
-							<nodeVersion>${node.version}</nodeVersion>
-							<npmVersion>${npm.version}</npmVersion>
-						</configuration>
-					</execution>
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<!-- Optional configuration which provides for running any npm command -->
-						<configuration>
-							<workingDirectory>${angular.root}</workingDirectory>
-							<arguments>install</arguments>
-						</configuration>
-					</execution>
+    </dependencies>
 
-					<execution>
-						<id>npm run build</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<workingDirectory>${angular.root}</workingDirectory>
-							<arguments>run build</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.0.2</version>
-				<configuration>
-					<outputDirectory>target/classes/static</outputDirectory>
-					<resources>
-						<resource>
-							<directory>${angular.root}/dist</directory>
-						</resource>
-					</resources>
-				</configuration>
-			</plugin>
-		</plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
+                <version>1.7.6</version>
+                <executions>
 
-	</build>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <installDirectory>${angular.root}</installDirectory>
+                            <nodeVersion>${node.version}</nodeVersion>
+                            <npmVersion>${npm.version}</npmVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <!-- Optional configuration which provides for running any npm command -->
+                        <configuration>
+                            <workingDirectory>${angular.root}</workingDirectory>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>npm run build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <workingDirectory>${angular.root}</workingDirectory>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <outputDirectory>target/classes/static</outputDirectory>
+                    <resources>
+                        <resource>
+                            <directory>${angular.root}/dist</directory>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
 
 </project>
