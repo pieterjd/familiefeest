@@ -8,14 +8,17 @@
 		<version>2.1.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>staticcontent</artifactId>
+	<groupId>com.pieterjd</groupId>
+	<artifactId>familiefeest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>staticcontent</name>
-	<description>Demo project for Spring Boot</description>
+	<name>familiefeest</name>
+	<description>Website for familiefeest registration</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<angular.root>src/main/angular</angular.root>
+		<node.version>v8.11.1</node.version>
+		<npm.version>5.6.0</npm.version>
 	</properties>
 
 	<dependencies>
@@ -37,7 +40,63 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+			<groupId>com.github.eirslett</groupId>
+			<artifactId>frontend-maven-plugin</artifactId>
+			<!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
+			<version>1.7.6</version>
+				<executions>
+
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<installDirectory>${angular.root}</installDirectory>
+							<nodeVersion>${node.version}</nodeVersion>
+							<npmVersion>${npm.version}</npmVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<!-- Optional configuration which provides for running any npm command -->
+						<configuration>
+							<workingDirectory>${angular.root}</workingDirectory>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+<!--
+					<execution>
+						<id>npm run build</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${angular.root}</workingDirectory>
+							<arguments>run build</arguments>
+						</configuration>
+					</execution>
+				-->
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<outputDirectory>target/classes/static</outputDirectory>
+					<resources>
+						<resource>
+							<directory>${angular.root}/dist</directory>
+						</resource>
+					</resources>
+				</configuration>
+			</plugin>
 		</plugins>
+
 	</build>
 
 </project>

@@ -1,4 +1,4 @@
-package com.example.staticcontent;
+package com.pieterjd.familiefeest;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
