@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StaticcontentApplication {
+public class FamiliefeestApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StaticcontentApplication.class, args);
+		SpringApplication.run(FamiliefeestApplication.class, args);
 	}
 
 }
