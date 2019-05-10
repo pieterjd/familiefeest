@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.pieterjd.familiefeest</groupId>
     <artifactId>backend</artifactId>
-    <version>${parent.version}</version>
+    <version>0.0.1-SNAPSHOT</version>
     <properties>
         <angular.root>${project.parent.basedir}/frontend/src/main/angular</angular.root>
     </properties>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>com.pieterjd.familiefeest</groupId>
             <artifactId>frontend</artifactId>
-            <version>${parent.version}</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
         <!--
