@@ -1,0 +1,1 @@
+web: java -jar target/familiefeest-0.0.1-SNAPSHOT.jar
