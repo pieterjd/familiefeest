@@ -13,108 +13,18 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>familiefeest</name>
     <description>Website for familiefeest registration</description>
-
+<packaging>pom</packaging>
     <properties>
         <java.version>1.8</java.version>
-        <angular.root>src/main/angular</angular.root>
         <node.version>v10.15.2</node.version>
         <npm.version>6.4.1</npm.version>
         <springboot.version>2.1.4.RELEASE</springboot.version>
     </properties>
+<modules>
+    <module>backend</module>
+    <module>frontend</module>
+</modules>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.8</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-        <!--
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
--->
-
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
-                <version>1.7.6</version>
-                <executions>
-
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <installDirectory>${angular.root}</installDirectory>
-                            <nodeVersion>${node.version}</nodeVersion>
-                            <npmVersion>${npm.version}</npmVersion>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <!-- Optional configuration which provides for running any npm command -->
-                        <configuration>
-                            <workingDirectory>${angular.root}</workingDirectory>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>npm run build</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <workingDirectory>${angular.root}</workingDirectory>
-                            <arguments>run build</arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-                <configuration>
-                    <outputDirectory>target/classes/static</outputDirectory>
-                    <resources>
-                        <resource>
-                            <directory>${angular.root}/dist</directory>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-        </plugins>
-
-    </build>
 
 </project>
