@@ -1,6 +1,6 @@
-<div class="row">
-  <div class="col">
-    <mat-horizontal-stepper>
+<div>
+  <div>
+    <mat-horizontal-stepper [linear]="true">
       <mat-step [stepControl]="eventCodeFormGroup">
         <form [formGroup]="eventCodeFormGroup">
           <mat-form-field>
@@ -12,7 +12,20 @@
         </div>
       </mat-step>
       <mat-step>
-        Add menus
+        <form [formGroup]="menuFormGroup">
+          <div class="row">
+          <mat-form-field class="col">
+            <input matInput placeholder="Voor wie is menu bestemd?" formControlName="nameInput" required>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <mat-label>Kies een menu</mat-label>
+            <mat-select formControlName="menuSelect">
+              <mat-option value="kind">Kinder menu</mat-option>
+              <mat-option value="volwassen">Volwassen menu</mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+        </form>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>

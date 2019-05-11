@@ -8,11 +8,17 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class RegistrationComponent implements OnInit {
   eventCodeFormGroup: FormGroup;
+  menuFormGroup: FormGroup;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.eventCodeFormGroup = this.fb.group({
       eventCodeInput: ['', Validators.required]
+    });
+
+    this.menuFormGroup = this.fb.group({
+      nameInput: ['', Validators.required],
+      menuSelect: ['', Validators.required],
     });
   }
 
