@@ -1,14 +1,28 @@
 <div class="row">
   <div class="col">
     <mat-horizontal-stepper>
-      <mat-step>
-        Code
+      <mat-step [stepControl]="eventCodeFormGroup">
+        <form [formGroup]="eventCodeFormGroup">
+          <mat-form-field>
+            <input matInput placeholder="Event code" formControlName="eventCodeInput" required>
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
       </mat-step>
       <mat-step>
         Add menus
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
       </mat-step>
       <mat-step>
         Review & Confirmation
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
       </mat-step>
     </mat-horizontal-stepper>
   </div>
