@@ -33,7 +33,14 @@ public class EventCodeController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/{eventId}/{userId}")
+    @GetMapping("/{eventCode}")
+    public EventCode getEventCode(@PathVariable String eventCode){
+        return eventCodeRepository.findByCodeEquals(eventCode)
+                .orElseThrow(() -> new RuntimeException("No eventcode found!"));
+    }
+
+
+    @GetMapping("/generate/{eventId}/{userId}")
     public EventCode generate(@PathVariable Long eventId, @PathVariable Long userId) {
         EventCode result = null;
         log.debug(String.format("eventid %d and user id %d", eventId, userId));
