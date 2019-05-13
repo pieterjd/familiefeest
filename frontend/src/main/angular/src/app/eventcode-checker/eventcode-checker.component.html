@@ -1,0 +1,14 @@
+<form  [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+  <mat-form-field>
+    <input matInput placeholder="vul de code in" required
+            [formControl]="myForm.controls['eventCode']"
+    >
+    <mat-error *ngIf="!validEventCode">
+      Invalid event code
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-button type="submit">Submit</button>
+
+</form>
+Entered eventcode: {{myForm.controls['eventCode'].value}}; valid?:{{validEventCode}}
