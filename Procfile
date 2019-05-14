@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar backend/target/backend-0.0.1-SNAPSHOT.jar
+web: java $JAVA_OPTS -Dspring.profiles.active=prod -jar backend/target/backend-0.0.1-SNAPSHOT.jar
