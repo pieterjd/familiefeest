@@ -12,6 +12,7 @@ export class EventcodeCheckerComponent implements OnInit {
   myForm: FormGroup;
   validEventCode: boolean;
   checkedEventCode: boolean;
+  eventCode: any;
 
   constructor(private fb: FormBuilder, private eventCodeService: EventcodeService) {
     this.myForm = this.fb.group({
@@ -27,9 +28,10 @@ export class EventcodeCheckerComponent implements OnInit {
   onSubmit(values: any) {
     console.log(values);
     this.eventCodeService.checkEventcode(values.eventCode).subscribe(
-      success => {
+      data => {
         this.checkedEventCode = true;
         this.validEventCode = true;
+        this.eventCode = data;
       },
       error => {
         this.checkedEventCode = true;

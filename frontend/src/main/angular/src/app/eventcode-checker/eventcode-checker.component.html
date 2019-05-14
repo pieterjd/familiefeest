@@ -11,4 +11,9 @@
   <button mat-button type="submit">Submit</button>
 
 </form>
-Entered eventcode: {{myForm.controls['eventCode'].value}}; valid?:{{validEventCode}}
+<div>
+  Entered eventcode: {{myForm.controls['eventCode'].value}}; valid?:{{validEventCode}}
+</div>
+<div *ngIf="eventCode?.id">
+  Hello {{eventCode.user.name}}
+</div>
