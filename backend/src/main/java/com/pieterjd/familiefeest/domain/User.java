@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -18,6 +15,8 @@ import javax.persistence.Id;
 @Builder
 
 @Entity
+//user cannot be used as table name in postgres
+@Table(name = "user_tbl")
 public class User {
     @Id
     @GeneratedValue
