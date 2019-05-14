@@ -1,15 +1,13 @@
 <div>
   <div>
-    <app-eventcode-checker></app-eventcode-checker>
     <mat-horizontal-stepper [linear]="true">
-      <mat-step [stepControl]="eventCodeFormGroup">
-        <form [formGroup]="eventCodeFormGroup">
-          <mat-form-field>
-            <input matInput placeholder="Event code" formControlName="eventCodeInput" required>
-          </mat-form-field>
-        </form>
+      <mat-step>
+        <app-eventcode-checker (eventCodeValid)="setEventCode($event)"></app-eventcode-checker>
+        <div *ngIf="eventCode?.id">
+          Code voor {{eventCode.user.name}}
+        </div>
         <div>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext *ngIf="eventCode">Next</button>
         </div>
       </mat-step>
       <mat-step>

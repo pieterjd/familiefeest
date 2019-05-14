@@ -8,24 +8,20 @@ import {EventcodeService} from "../eventcode.service";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  eventCodeFormGroup: FormGroup;
+  eventCode: any;
   menuFormGroup: FormGroup;
   constructor(private fb: FormBuilder, private eventCodeService: EventcodeService) { }
 
   ngOnInit() {
-    this.eventCodeFormGroup = this.fb.group({
-      eventCodeInput: ['', Validators.required]
-    });
 
     this.menuFormGroup = this.fb.group({
       nameInput: ['', Validators.required],
       menuSelect: ['', Validators.required],
     });
+  }
 
-    console.log("calling elvis");
-    this.eventCodeService.checkEventcode('I5POAQ')
-      .subscribe(data => console.log(data),
-        error => console.log(error));
+  setEventCode(eventCode: any){
+    this.eventCode = eventCode;
   }
 
 }

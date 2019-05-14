@@ -3,17 +3,8 @@
     <input matInput placeholder="vul de code in" required
             [formControl]="myForm.controls['eventCode']"
     >
-    <mat-error *ngIf="!validEventCode">
-      Invalid event code
-    </mat-error>
   </mat-form-field>
 
-  <button mat-button type="submit">Submit</button>
+  <button mat-button type="submit">Check code</button>
 
 </form>
-<div>
-  Entered eventcode: {{myForm.controls['eventCode'].value}}; valid?:{{validEventCode}}
-</div>
-<div *ngIf="eventCode?.id">
-  Hello {{eventCode.user.name}}
-</div>
