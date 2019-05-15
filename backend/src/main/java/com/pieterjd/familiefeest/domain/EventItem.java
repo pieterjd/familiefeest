@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +13,7 @@ import java.util.Set;
 @Builder
 
 @Entity
-public class Event {
+public class EventItem {
     @Id
     @GeneratedValue
     private Long id;
@@ -23,10 +21,9 @@ public class Event {
     private String title;
     @Column
     private String description;
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-    @OneToMany
-    @JoinColumn(name="event_id")
-    private Set<EventItem> eventItems;
+
+    @ManyToOne
+    @JoinColumn(name="eventitemtype_id")
+    private EventItemType type;
+
 }
