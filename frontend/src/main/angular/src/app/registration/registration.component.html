@@ -1,30 +1,20 @@
+<app-menulist></app-menulist>
 <div>
   <div>
     <mat-horizontal-stepper [linear]="true">
       <mat-step>
-        <app-eventcode-checker (eventCodeValid)="setEventCode($event)"></app-eventcode-checker>
-        <div *ngIf="eventCode?.id">
-          Code voor {{eventCode.user.name}}
-        </div>
-        <div>
-          <button mat-button matStepperNext *ngIf="eventCode">Next</button>
+        <div class="col text-center">
+          <app-eventcode-checker (eventCodeValid)="setEventCode($event)"></app-eventcode-checker>
+          <div *ngIf="eventCode?.id">
+            Code voor {{eventCode.user.name}}
+          </div>
+          <div>
+            <button mat-button matStepperNext *ngIf="eventCode">Next</button>
+          </div>
         </div>
       </mat-step>
       <mat-step>
-        <form [formGroup]="menuFormGroup">
-          <div class="row">
-          <mat-form-field class="col">
-            <input matInput placeholder="Voor wie is menu bestemd?" formControlName="nameInput" required>
-          </mat-form-field>
-          <mat-form-field class="col">
-            <mat-label>Kies een menu</mat-label>
-            <mat-select formControlName="menuSelect">
-              <mat-option value="kind">Kinder menu</mat-option>
-              <mat-option value="volwassen">Volwassen menu</mat-option>
-            </mat-select>
-          </mat-form-field>
-          </div>
-        </form>
+        <app-menulist></app-menulist>
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>

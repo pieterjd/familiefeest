@@ -10,16 +10,11 @@ import {MatHorizontalStepper} from "@angular/material";
 })
 export class RegistrationComponent implements OnInit {
   eventCode: any;
-  menuFormGroup: FormGroup;
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
   constructor(private fb: FormBuilder, private eventCodeService: EventcodeService) { }
 
   ngOnInit() {
 
-    this.menuFormGroup = this.fb.group({
-      nameInput: ['', Validators.required],
-      menuSelect: ['', Validators.required],
-    });
   }
 
   setEventCode(eventCode: any){

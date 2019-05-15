@@ -1,0 +1,29 @@
+<div class="row">
+  <mat-list>
+    <h1 mat-subheader>Gekozen menus</h1>
+
+    <mat-list-item ngFor="let i of 1..5">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <h4 mat-line>menu</h4>
+            <p mat-line>voor <i>persoon</i></p>
+          </div>
+          <div class="col">
+            <mat-icon mat-list-icon class="col">remove_circle_outline</mat-icon>
+          </div>
+        </div>
+      </div>
+
+
+    </mat-list-item>
+
+
+  </mat-list>
+</div>
+<div class="row">
+  <button mat-icon-button>
+    <mat-icon>add_circle</mat-icon>
+    Voeg menukeuze toe
+  </button>
+</div>
