@@ -6,14 +6,27 @@ import {HttpClientModule} from "@angular/common/http";
 // angular material
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 // import widgets
-import {MatCardModule, MatToolbarModule, MatStepperModule, MatFormFieldModule, MatButtonModule, MatInputModule, MatSelectModule, MatListModule, MatIconModule} from "@angular/material";
+import {
+    MatCardModule,
+    MatToolbarModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatListModule,
+    MatIconModule,
+    MatDialogModule,
+    MatDialog,
+    MatTooltipModule
+} from "@angular/material";
 
 import {AppComponent} from './app.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AppRoutingModule } from './app-routing.module';
 import {EventcodeService} from "./eventcode.service";
 import { EventcodeCheckerComponent } from './eventcode-checker/eventcode-checker.component';
-import { MenulistComponent } from './menulist/menulist.component';
+import {AddMenuDialog, MenulistComponent} from './menulist/menulist.component';
 
 
 @NgModule({
@@ -21,7 +34,11 @@ import { MenulistComponent } from './menulist/menulist.component';
         AppComponent,
         RegistrationComponent,
         EventcodeCheckerComponent,
-        MenulistComponent
+        MenulistComponent,
+        AddMenuDialog
+    ],
+    entryComponents: [
+        AddMenuDialog
     ],
     imports: [
         BrowserModule,
@@ -38,10 +55,13 @@ import { MenulistComponent } from './menulist/menulist.component';
         MatSelectModule,
         MatListModule,
         MatIconModule,
+        MatDialogModule,
+        MatTooltipModule,
         HttpClientModule
     ],
     providers: [
-        EventcodeService
+        EventcodeService,
+        MatDialog
     ],
     bootstrap: [AppComponent]
 })

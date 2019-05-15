@@ -10,7 +10,7 @@
             <p mat-line>voor <i>persoon</i></p>
           </div>
           <div class="col">
-            <mat-icon mat-list-icon class="col">remove_circle_outline</mat-icon>
+            <mat-icon mat-list-icon class="col" matTooltip="verwijder menukeuze">remove_circle_outline</mat-icon>
           </div>
         </div>
       </div>
@@ -22,8 +22,10 @@
   </mat-list>
 </div>
 <div class="row">
-  <button mat-icon-button>
-    <mat-icon>add_circle</mat-icon>
-    Voeg menukeuze toe
-  </button>
+  <div class="col-12">
+    <button mat-icon-button (click)="openDialog()">
+      <mat-icon>add_circle</mat-icon>
+      Voeg menukeuze toe
+    </button>
+  </div>
 </div>
