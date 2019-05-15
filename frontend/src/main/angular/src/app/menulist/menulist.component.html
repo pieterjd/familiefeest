@@ -1,31 +1,34 @@
-<div class="row">
-  <mat-list>
-    <h1 mat-subheader>Gekozen menus</h1>
+<mat-list>
+  <mat-list-item>
+    <h3 matLine>Volwassen menu</h3>
 
-    <mat-list-item ngFor="let i of 1..5">
-      <div class="col">
-        <div class="row">
-          <div class="col">
-            <h4 mat-line>menu</h4>
-            <p mat-line>voor <i>persoon</i></p>
-          </div>
-          <div class="col">
-            <mat-icon mat-list-icon class="col" matTooltip="verwijder menukeuze">remove_circle_outline</mat-icon>
-          </div>
-        </div>
-      </div>
-
-
-    </mat-list-item>
-
-
-  </mat-list>
-</div>
-<div class="row">
-  <div class="col-12">
-    <button mat-icon-button (click)="openDialog()">
+    <button mat-icon-button (click)="openDialog()" matTooltip="voeg dit menu toe voor een gezinslid">
       <mat-icon>add_circle</mat-icon>
-      Voeg menukeuze toe
     </button>
-  </div>
+
+  </mat-list-item>
+  <mat-list-item>
+    <h3 matLine>Kinder menu</h3>
+    <button mat-icon-button (click)="openDialog()" matTooltip="voeg dit menu toe voor een gezinslid">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+<h2>Reeds gekozen menus</h2>
+<mat-list>
+  <mat-list-item ngFor="let i of 1..5">
+    <h3 matLine>Volwassen menu voor persoon X</h3>
+
+    <button mat-icon-button (click)="openDialog()" matTooltip="verwijder menukeuze">
+      <mat-icon>remove_circle</mat-icon>
+    </button>
+  </mat-list-item>
+
+
+</mat-list>
+
+
+<div>
+
 </div>
+

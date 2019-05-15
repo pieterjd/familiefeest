@@ -1,31 +1,34 @@
-<app-menulist></app-menulist>
-<div>
-  <div>
-    <mat-horizontal-stepper [linear]="true">
-      <mat-step>
-        <div class="col text-center">
-          <app-eventcode-checker (eventCodeValid)="setEventCode($event)"></app-eventcode-checker>
-          <div *ngIf="eventCode?.id">
-            Code voor {{eventCode.user.name}}
-          </div>
-          <div>
-            <button mat-button matStepperNext *ngIf="eventCode">Next</button>
-          </div>
+<div class="row">
+  <mat-horizontal-stepper [linear]="true" class="col">
+    <mat-step>
+      <div >
+        <div class="alert alert-info" role="alert">
+          Vul de code van de uitnodiging in
         </div>
-      </mat-step>
-      <mat-step>
-        <app-menulist></app-menulist>
+        <app-eventcode-checker (eventCodeValid)="setEventCode($event)"></app-eventcode-checker>
+        <div *ngIf="eventCode?.id">
+          Code voor {{eventCode.user.name}}
+        </div>
         <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperNext *ngIf="eventCode">Next</button>
         </div>
-      </mat-step>
-      <mat-step>
-        Review & Confirmation
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper>
-  </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <div class="alert alert-info" role="alert">
+        Kies een menu voor elk gezinslid
+      </div>
+      <app-menulist></app-menulist>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      Review & Confirmation
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
