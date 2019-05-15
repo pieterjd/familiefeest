@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 
 @Entity
-public class EventCode {
+public class EventRegistration {
     @Id
     @GeneratedValue
     private Long id;
