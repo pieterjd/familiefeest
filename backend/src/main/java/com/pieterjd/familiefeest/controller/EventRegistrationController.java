@@ -1,36 +1,34 @@
 package com.pieterjd.familiefeest.controller;
 
-import com.pieterjd.familiefeest.domain.Event;
-import com.pieterjd.familiefeest.domain.EventRegistration;
-import com.pieterjd.familiefeest.domain.User;
-import com.pieterjd.familiefeest.repository.EventRegistrationRepository;
-import com.pieterjd.familiefeest.repository.EventRepository;
-import com.pieterjd.familiefeest.repository.UserRepository;
+import com.pieterjd.familiefeest.domain.*;
+import com.pieterjd.familiefeest.dto.PurchaseDto;
+import com.pieterjd.familiefeest.repository.*;
 import com.pieterjd.familiefeest.service.EventRegistrationService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/eventcode")
+@RequestMapping("/api/eventregistration")
 @Log4j2
 public class EventRegistrationController {
     private final EventRegistrationService eventRegistrationService;
     private final EventRegistrationRepository eventRegistrationRepository;
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final EventItemRepository eventItemRepository;
+    private final PurchaseRepository purchaseRepository;
 
     @Autowired
-    public EventRegistrationController(EventRegistrationService eventRegistrationService, EventRegistrationRepository eventRegistrationRepository, EventRepository eventRepository, UserRepository userRepository) {
+    public EventRegistrationController(EventRegistrationService eventRegistrationService, EventRegistrationRepository eventRegistrationRepository, EventRepository eventRepository, UserRepository userRepository, EventItemRepository eventItemRepository, PurchaseRepository purchaseRepository) {
         this.eventRegistrationService = eventRegistrationService;
         this.eventRegistrationRepository = eventRegistrationRepository;
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
+        this.eventItemRepository = eventItemRepository;
+        this.purchaseRepository = purchaseRepository;
     }
 
     @GetMapping("/{eventCode}")
@@ -52,5 +50,19 @@ public class EventRegistrationController {
 
         }
         return result;
+    }
+
+    @PostMapping("/purchase")
+    public void addEventItem(@RequestBody PurchaseDto dto){
+        EventRegistration er = eventRegistrationRepository.findByCodeEquals(dto.getEventCode()).orElseThrow(() -> new RuntimeException("Invalid eventcode"));
+        EventItem ei = eventItemRepository.findById(dto.getEventItemId()).orElseThrow(() -> new RuntimeException("invalid eventItemId"));
+        Purchase p = Purchase.builder()
+                .eventItem(ei)
+                .beneficiary(dto.getBeneficiary())
+                .build();
+        purchaseRepository.save(p);
+        er.getPurchasedItems().add(p);
+        eventRegistrationRepository.save(er);
+
     }
 }

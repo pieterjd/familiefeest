@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -14,19 +13,12 @@ import java.util.List;
 @Builder
 
 @Entity
-public class EventRegistration {
+public class Purchase {
     @Id
     @GeneratedValue
     private Long id;
+    @ManyToOne
+    private EventItem eventItem;
     @Column
-    private String code;
-    @OneToOne
-    private User user;
-    @OneToOne
-    private Event event;
-    @OneToMany
-    private List<Purchase> purchasedItems;
-
-
-
+    private String beneficiary;
 }
