@@ -19,7 +19,6 @@ public class Purchase {
     @GeneratedValue
     private Long id;
     @ManyToOne
-    @JsonBackReference
     private EventItem eventItem;
     @Column
     private String beneficiary;

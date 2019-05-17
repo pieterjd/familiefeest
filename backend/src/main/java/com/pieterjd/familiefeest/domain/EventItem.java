@@ -29,11 +29,10 @@ public class EventItem {
     @JsonProperty
     private String description;
     @Enumerated(EnumType.STRING)
-    @JsonIgnore
+    @JsonProperty
     private EventItemType type;
     @OneToMany(mappedBy = "eventItem")
-    @JsonProperty
-    @JsonManagedReference
+    @JsonIgnore
     private List<Purchase> purchases;
 
 }
