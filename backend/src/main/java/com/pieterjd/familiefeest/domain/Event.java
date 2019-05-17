@@ -1,5 +1,8 @@
 package com.pieterjd.familiefeest.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -27,6 +31,5 @@ public class Event {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @OneToMany
-    @JoinColumn(name="event_id")
-    private Set<EventItem> eventItems;
+    private List<EventItem> eventItems;
 }

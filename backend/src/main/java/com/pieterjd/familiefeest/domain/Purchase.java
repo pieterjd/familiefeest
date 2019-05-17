@@ -1,5 +1,6 @@
 package com.pieterjd.familiefeest.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class Purchase {
     @GeneratedValue
     private Long id;
     @ManyToOne
+    @JsonBackReference
     private EventItem eventItem;
     @Column
     private String beneficiary;
