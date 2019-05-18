@@ -18,9 +18,6 @@
       <div class="alert alert-info" role="alert">
         Kies een menu voor elk gezinslid
       </div>
-      <div *ngFor="let eventItem of eventItems">
-        {{eventItem.title}}
-      </div>
       <app-menulist [eventCode]="eventCode?.code"></app-menulist>
       <div>
         <button mat-button matStepperPrevious>Back</button>

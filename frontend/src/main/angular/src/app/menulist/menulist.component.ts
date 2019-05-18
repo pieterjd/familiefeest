@@ -66,7 +66,7 @@ export class AddMenuDialog {
 
   constructor(
     public dialogRef: MatDialogRef<AddMenuDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: MenuData) {
+    @Inject(MAT_DIALOG_DATA) public data: Purchase) {
   }
 
   onNoClick(): void {
