@@ -3,7 +3,7 @@
     <div>inside loop!</div>
     <h3 matLine>{{eventItem.title}}</h3>
 
-    <button mat-icon-button (click)="openDialog()" matTooltip="voeg dit menu toe voor een gezinslid">
+    <button mat-icon-button (click)="openDialog(eventItem)" matTooltip="voeg dit menu toe voor een gezinslid">
       <mat-icon>add_circle</mat-icon>
     </button>
   </mat-list-item>

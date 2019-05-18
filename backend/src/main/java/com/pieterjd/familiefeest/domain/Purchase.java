@@ -1,12 +1,14 @@
 package com.pieterjd.familiefeest.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 @Data
 @NoArgsConstructor

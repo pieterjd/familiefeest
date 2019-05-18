@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 @Data
 @NoArgsConstructor

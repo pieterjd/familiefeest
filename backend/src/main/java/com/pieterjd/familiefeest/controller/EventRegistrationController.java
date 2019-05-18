@@ -52,16 +52,13 @@ public class EventRegistrationController {
         return result;
     }
 
-    @PostMapping("/purchase")
-    public void addEventItem(@RequestBody PurchaseDto dto){
-        EventRegistration er = eventRegistrationRepository.findByCodeEquals(dto.getEventCode()).orElseThrow(() -> new RuntimeException("Invalid eventcode"));
-        EventItem ei = eventItemRepository.findById(dto.getEventItemId()).orElseThrow(() -> new RuntimeException("invalid eventItemId"));
-        Purchase p = Purchase.builder()
-                .eventItem(ei)
-                .beneficiary(dto.getBeneficiary())
-                .build();
-        purchaseRepository.save(p);
-        er.getPurchasedItems().add(p);
+    @PostMapping("/purchase/{eventCode}")
+    public void addEventItem(@PathVariable String eventCode, @RequestBody Purchase purchase){
+        EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("Invalid eventcode"));
+        System.out.println("EVENTREGISTRATION: "+er.getCode());
+        System.out.println("PURCHASING - "+purchase.toString());
+        purchaseRepository.save(purchase);
+        er.getPurchasedItems().add(purchase);
         eventRegistrationRepository.save(er);
 
     }

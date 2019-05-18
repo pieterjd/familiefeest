@@ -2,6 +2,7 @@ import {Component, Inject, Input, OnChanges, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {EventItemService} from "../../service/eventitem.service";
 import {EventItem} from "../../model/eventitem";
+import {Purchase} from "../../model/purchase";
 
 
 @Component({
@@ -12,7 +13,7 @@ import {EventItem} from "../../model/eventitem";
 export class MenulistComponent implements OnInit, OnChanges {
   @Input() eventCode: string;
   eventItems: EventItem[];
-  animal: string;
+  beneficiary: string;
 
   constructor(private dialog: MatDialog, private eventItemService: EventItemService) {
   }
@@ -31,22 +32,28 @@ export class MenulistComponent implements OnInit, OnChanges {
     }
   }
 
-  openDialog(): void {
+  openDialog(ei: EventItem): void {
+    let purchase = new Purchase(ei, null);
     const dialogRef = this.dialog.open(AddMenuDialog, {
       width: '250px',
-      data: {animal: undefined}
+      data: {purchase}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(purchase => {
       console.log('The dialog was closed');
-      this.animal = result;
+      console.log("result from dialig");
+      console.log(purchase);
+      this.eventItemService.purchaseEventItem(this.eventCode, purchase).subscribe(
+        data => console.log("pruchased!"),
+        error => console.log("purch wrong")
+      );
     });
   }
 
 }
 
-export interface DialogData {
-  animal: string;
+export interface MenuData {
+  beneficiary: string;
 }
 
 
@@ -59,7 +66,7 @@ export class AddMenuDialog {
 
   constructor(
     public dialogRef: MatDialogRef<AddMenuDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: MenuData) {
   }
 
   onNoClick(): void {
