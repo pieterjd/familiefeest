@@ -18,17 +18,14 @@ public class EventRegistrationController {
     private final EventRegistrationRepository eventRegistrationRepository;
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
-    private final EventItemRepository eventItemRepository;
-    private final PurchaseRepository purchaseRepository;
 
     @Autowired
-    public EventRegistrationController(EventRegistrationService eventRegistrationService, EventRegistrationRepository eventRegistrationRepository, EventRepository eventRepository, UserRepository userRepository, EventItemRepository eventItemRepository, PurchaseRepository purchaseRepository) {
+    public EventRegistrationController(EventRegistrationService eventRegistrationService, EventRegistrationRepository eventRegistrationRepository, EventRepository eventRepository, UserRepository userRepository) {
         this.eventRegistrationService = eventRegistrationService;
         this.eventRegistrationRepository = eventRegistrationRepository;
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
-        this.eventItemRepository = eventItemRepository;
-        this.purchaseRepository = purchaseRepository;
+
     }
 
     @GetMapping("/{eventCode}")
@@ -50,16 +47,5 @@ public class EventRegistrationController {
 
         }
         return result;
-    }
-
-    @PostMapping("/purchase/{eventCode}")
-    public void addEventItem(@PathVariable String eventCode, @RequestBody Purchase purchase){
-        EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("Invalid eventcode"));
-        System.out.println("EVENTREGISTRATION: "+er.getCode());
-        System.out.println("PURCHASING - "+purchase.toString());
-        purchaseRepository.save(purchase);
-        er.getPurchasedItems().add(purchase);
-        eventRegistrationRepository.save(er);
-
     }
 }
