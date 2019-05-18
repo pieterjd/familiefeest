@@ -13,19 +13,22 @@ export class MenulistComponent implements OnInit, OnChanges {
   @Input() eventCode: string;
   eventItems: EventItem[];
   animal: string;
-  constructor(private dialog: MatDialog,private eventItemService: EventItemService) { }
+
+  constructor(private dialog: MatDialog, private eventItemService: EventItemService) {
+  }
 
   ngOnInit() {
 
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     //whenever the eventCode input changes, then call the service
-    console.log("eventCode input changed");
-    this.eventItemService.getEventItems(this.eventCode)
-      .subscribe(
-        data => this.eventItems = data
-      );
+    if (this.eventCode != null) {
+      this.eventItemService.getEventItems(this.eventCode)
+        .subscribe(
+          data => this.eventItems = data
+        );
+    }
   }
 
   openDialog(): void {
@@ -56,7 +59,8 @@ export class AddMenuDialog {
 
   constructor(
     public dialogRef: MatDialogRef<AddMenuDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
