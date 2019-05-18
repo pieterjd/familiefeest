@@ -10,14 +10,14 @@ import {isBoolean} from "util";
 })
 export class EventItemService {
   private ENDPOINT = "/api/eventitem/";
-  private PURCHASE_ENDPOINT = "/api/eventregistration/purchase/";
+  private PURCHASE_ENDPOINT = "/api/purchase/";
   constructor(private http: HttpClient) { }
 
   getEventItems(eventCode: string): Observable<EventItem[]>{
     return this.http.get<EventItem[]>(this.ENDPOINT+eventCode);
   }
 
-  purchaseEventItem(eventCode: string, purchase: Purchase): Observable<boolean>{
+  purchaseEventItem(eventCode: string, purchase: Purchase): Observable<any>{
     return this.http.post(this.PURCHASE_ENDPOINT+eventCode, purchase);
   }
 }
