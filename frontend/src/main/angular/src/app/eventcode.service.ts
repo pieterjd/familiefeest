@@ -4,8 +4,8 @@ import {Observable} from "rxjs/index";
 import {AbstractControl, ValidationErrors} from "@angular/forms";
 
 @Injectable()
-export class EventcodeService {
-  private ENDPOINT: string = "/api/eventcode";
+export class EventCodeService {
+  private ENDPOINT: string = "/api/eventregistration";
 
   constructor(private http: HttpClient) {
   }

@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {EventcodeService} from "../eventcode.service";
 import {MatHorizontalStepper} from "@angular/material";
 
 @Component({
@@ -11,7 +10,7 @@ import {MatHorizontalStepper} from "@angular/material";
 export class RegistrationComponent implements OnInit {
   eventCode: any;
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
-  constructor(private fb: FormBuilder, private eventCodeService: EventcodeService) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
 

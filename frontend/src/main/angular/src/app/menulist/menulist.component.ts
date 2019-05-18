@@ -1,16 +1,31 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnChanges, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+import {EventItemService} from "../../service/eventitem.service";
+import {EventItem} from "../../model/eventitem";
+
 
 @Component({
   selector: 'app-menulist',
   templateUrl: './menulist.component.html',
   styleUrls: ['./menulist.component.css']
 })
-export class MenulistComponent implements OnInit {
+export class MenulistComponent implements OnInit, OnChanges {
+  @Input() eventCode: string;
+  eventItems: EventItem[];
   animal: string;
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,private eventItemService: EventItemService) { }
 
   ngOnInit() {
+
+  }
+
+  ngOnChanges(){
+    //whenever the eventCode input changes, then call the service
+    console.log("eventCode input changed");
+    this.eventItemService.getEventItems(this.eventCode)
+      .subscribe(
+        data => this.eventItems = data
+      );
   }
 
   openDialog(): void {
