@@ -35,5 +35,9 @@ public class EventItem {
     @OneToMany(mappedBy = "eventItem")
     @JsonIgnore
     private List<Purchase> purchases;
+    @Column
+    @JsonProperty
+    private Double price;
+
 
 }
