@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {EventItemService} from "../../service/eventitem.service";
 import {EventItem} from "../../model/eventitem";
 import {Purchase} from "../../model/purchase";
+import {PurchaseService} from "../../service/purchase.service";
 
 
 @Component({
@@ -14,11 +15,15 @@ export class MenulistComponent implements OnInit, OnChanges {
   @Input() eventCode: string;
   eventItems: EventItem[];
   beneficiary: string;
+  purchases: Purchase[];
 
-  constructor(private dialog: MatDialog, private eventItemService: EventItemService) {
+  constructor(private dialog: MatDialog,
+              private eventItemService: EventItemService,
+              private purchaseService: PurchaseService) {
   }
 
   ngOnInit() {
+
 
   }
 
@@ -29,6 +34,11 @@ export class MenulistComponent implements OnInit, OnChanges {
         .subscribe(
           data => this.eventItems = data
         );
+      this.purchaseService.getPurchases(this.eventCode)
+        .subscribe(
+          data => this.purchases = data
+        )
+
     }
   }
 
