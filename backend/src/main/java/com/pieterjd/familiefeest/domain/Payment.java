@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -25,4 +22,6 @@ public class Payment {
     private Date date;
     @Column
     private Double amount;
+    @ManyToOne
+    private EventRegistration eventRegistration;
 }

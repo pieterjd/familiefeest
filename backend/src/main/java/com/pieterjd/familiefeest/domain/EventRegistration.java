@@ -1,5 +1,6 @@
 package com.pieterjd.familiefeest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +30,8 @@ public class EventRegistration {
     @OneToMany
     private List<Purchase> purchasedItems;
 
-    @OneToMany
+    @OneToMany(mappedBy = "eventRegistration")
+    @JsonIgnore
     private List<Payment> payments;
 
     @JsonProperty

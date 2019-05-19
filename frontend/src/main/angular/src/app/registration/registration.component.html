@@ -25,7 +25,10 @@
       </div>
     </mat-step>
     <mat-step>
-      Review & Confirmation
+      <div class="alert alert-info" role="alert">
+        Bevestiging
+      </div>
+      <app-confirmation [eventCode]="eventCode?.code"></app-confirmation>
       <div>
         <button mat-button matStepperPrevious>Back</button>
       </div>

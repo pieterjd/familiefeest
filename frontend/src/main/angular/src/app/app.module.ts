@@ -27,6 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {EventCodeService} from "./eventcode.service";
 import { EventcodeCheckerComponent } from './eventcode-checker/eventcode-checker.component';
 import {AddMenuDialog, MenulistComponent} from './menulist/menulist.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {AddMenuDialog, MenulistComponent} from './menulist/menulist.component';
         RegistrationComponent,
         EventcodeCheckerComponent,
         MenulistComponent,
-        AddMenuDialog
+        AddMenuDialog,
+        ConfirmationComponent
     ],
     entryComponents: [
         AddMenuDialog
