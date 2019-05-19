@@ -35,13 +35,14 @@ public class PurchaseController {
 
 
     @PostMapping("/{eventCode}")
-    public void addPurchase(@PathVariable String eventCode, @RequestBody Purchase purchase) {
+    public Purchase addPurchase(@PathVariable String eventCode, @RequestBody Purchase purchase) {
         EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("Invalid eventcode"));
         System.out.println("EVENTREGISTRATION: " + er.getCode());
         System.out.println("PURCHASING - " + purchase.toString());
         purchaseRepository.save(purchase);
         er.getPurchasedItems().add(purchase);
         eventRegistrationRepository.save(er);
+        return purchase;
 
     }
 

@@ -44,18 +44,20 @@ export class MenulistComponent implements OnInit, OnChanges {
 
   openDialog(ei: EventItem): void {
     let purchase = new Purchase(ei, null);
+    console.log("showing dialog for: ");
+    console.log(purchase);
     const dialogRef = this.dialog.open(AddMenuDialog, {
       width: '250px',
-      data: {purchase}
+      data: {purchase: purchase}
     });
 
     dialogRef.afterClosed().subscribe(purchase => {
       console.log('The dialog was closed');
       console.log("result from dialig");
       console.log(purchase);
-      this.eventItemService.purchaseEventItem(this.eventCode, purchase).subscribe(
-        data => console.log("pruchased!"),
-        error => console.log("purch wrong")
+      this.purchaseService.addPurchase(this.eventCode, purchase).subscribe(
+        purchase => {console.log("purchase succeeded");this.purchases.push(purchase)},
+        error => console.log("purchase failed")
       );
     });
   }

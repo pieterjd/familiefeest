@@ -16,8 +16,4 @@ export class EventItemService {
   getEventItems(eventCode: string): Observable<EventItem[]>{
     return this.http.get<EventItem[]>(this.ENDPOINT+eventCode);
   }
-
-  purchaseEventItem(eventCode: string, purchase: Purchase): Observable<any>{
-    return this.http.post(this.PURCHASE_ENDPOINT+eventCode, purchase);
-  }
 }
