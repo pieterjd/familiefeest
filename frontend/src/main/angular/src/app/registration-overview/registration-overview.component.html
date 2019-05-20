@@ -1,6 +1,14 @@
-<table>
-  <tr><th>name</th><th>purchases</th><th>purchase total</th><th>already paid</th><th>open amount</th></tr>
-
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">name</th>
+    <th scope="col">purchases</th>
+    <th scope="col">total</th>
+    <th scope="col">paid</th>
+    <th scope="col">open</th>
+  </tr>
+  </thead>
+  <tbody>
   <tr *ngFor="let er of eventRegistrations">
     <td>{{er.user.name}}</td>
     <td>
@@ -10,8 +18,10 @@
         </li>
       </ol>
     </td>
-    <td>{{er.purchaseTotal}}</td>
-    <td>{{er.amountAlreadyPaid}}</td>
-    <td>{{er.openAmount}}</td>
+    <td>{{er.purchaseTotal | currency :'EUR'}}</td>
+    <td>{{er.amountAlreadyPaid | currency :'EUR'}}</td>
+    <td>{{er.openAmount | currency :'EUR'}}</td>
   </tr>
+  </tbody>
 </table>
+
