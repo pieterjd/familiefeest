@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {EventCodeService} from "../eventcode.service";
+import {EventRegistrationService} from "../event-registration.service";
 import {AbstractControl, AsyncValidator, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 
 
@@ -15,7 +15,7 @@ export class EventcodeCheckerComponent implements OnInit {
   eventCode: any;
   @Output() eventCodeValid: EventEmitter<any>;
 
-  constructor(private fb: FormBuilder, private eventCodeService: EventCodeService) {
+  constructor(private fb: FormBuilder, private eventCodeService: EventRegistrationService) {
     this.myForm = this.fb.group({
       'eventCode': ['', Validators.required]
     });
@@ -30,11 +30,11 @@ export class EventcodeCheckerComponent implements OnInit {
   onSubmit(values: any) {
     console.log(values);
     this.eventCodeService.checkEventcode(values.eventCode).subscribe(
-      data => {
+      eventRegistration => {
         this.checkedEventCode = true;
         this.validEventCode = true;
-        this.eventCode = data;
-        this.eventCodeValid.emit(data);
+        this.eventCode = eventRegistration.code;
+        this.eventCodeValid.emit(eventRegistration.code);
       },
       error => {
         this.checkedEventCode = true;

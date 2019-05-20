@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -47,5 +48,11 @@ public class EventRegistrationController {
 
         }
         return result;
+    }
+
+    @GetMapping("/event/{eventId}")
+    public List<EventRegistration>getByEvent(@PathVariable Long eventId){
+        Event e = eventRepository.findById(eventId).orElseThrow(()->new RuntimeException("invalid event id"));
+        return eventRegistrationRepository.findByEventEquals(e);
     }
 }
