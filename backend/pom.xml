@@ -72,13 +72,19 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
 
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
         </dependency>
+
+
 
 
 
