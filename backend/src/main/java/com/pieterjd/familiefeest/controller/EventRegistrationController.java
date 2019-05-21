@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,24 @@ public class EventRegistrationController {
                 .orElseThrow(() -> new RuntimeException("No eventcode found!"));
     }
 
+    @PostMapping("/upload/{eventId}")
+    public List<EventRegistration> upload(@PathVariable Long eventId,@RequestBody List<User> users){
+        Event e = eventRepository.findById(eventId).orElseThrow(()->new RuntimeException("invalid eventid"));
+        List<EventRegistration> result = new ArrayList<>();
+        for(User u: users){
+            userRepository.save(u);
+            EventRegistration er = EventRegistration.builder()
+                    .event(e)
+                    .user(u)
+                    .code(eventRegistrationService.generateCode())
+                    .payments(new ArrayList<>())
+                    .purchasedItems(new ArrayList<>())
+                    .build();
+            eventRegistrationRepository.save(er);
+            result.add(er);
+        }
+        return result;
+    }
 
     @GetMapping("/generate/{eventId}/{userId}")
     public EventRegistration generate(@PathVariable Long eventId, @PathVariable Long userId) {

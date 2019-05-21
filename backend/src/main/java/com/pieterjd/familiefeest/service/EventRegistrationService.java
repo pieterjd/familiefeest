@@ -18,6 +18,10 @@ public class EventRegistrationService {
     private final int CODE_LENGTH = 6;
     private Random random = new Random();
 
+    public String generateCode(){
+        return generateCode(CODE_LENGTH);
+    }
+
     private String generateCode(int length){
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<length;i++){
