@@ -21,7 +21,7 @@ import java.util.Set;
 @Entity
 public class Event {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     @Column
     private String title;

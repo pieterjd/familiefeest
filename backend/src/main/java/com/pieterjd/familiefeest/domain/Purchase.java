@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Entity
 public class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     @ManyToOne
     private EventItem eventItem;

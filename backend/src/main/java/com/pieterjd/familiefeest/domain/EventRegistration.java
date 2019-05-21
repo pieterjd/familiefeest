@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Entity
 public class EventRegistration {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     @Column
     private String code;
