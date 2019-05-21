@@ -10,19 +10,28 @@ import {PurchaseService} from "../../service/purchase.service";
 export class ConfirmationComponent implements OnInit, OnChanges {
   @Input() eventCode: string;
   eventRegistration: any;
-  constructor(private eventCodeService: EventRegistrationService, private purchaseSerivce: PurchaseService) { }
+
+  constructor(private eventCodeService: EventRegistrationService, private purchaseSerivce: PurchaseService) {
+  }
 
   ngOnInit() {
 
   }
+
   ngOnChanges() {
     //whenever the eventCode input changes, then call the service
     if (this.eventCode != null) {
-      this.eventCodeService.checkEventcode(this.eventCode)
-        .subscribe(
-          data => this.eventRegistration = data
-        );
+      this.refresh();
     }
+  }
+
+  refresh(): void {
+
+    this.eventCodeService.checkEventcode(this.eventCode)
+      .subscribe(
+        data => this.eventRegistration = data
+      );
+
   }
 
 }

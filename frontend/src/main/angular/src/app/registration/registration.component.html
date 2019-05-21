@@ -21,7 +21,7 @@
       <app-menulist [eventCode]="eventRegistration?.code"></app-menulist>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext (click)="refreshConfirmationComponent()">Next</button>
       </div>
     </mat-step>
     <mat-step>
