@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatHorizontalStepper} from "@angular/material";
+import {EventRegistration} from "../../model/eventregistration";
 
 @Component({
   selector: 'app-registration',
@@ -8,17 +9,19 @@ import {MatHorizontalStepper} from "@angular/material";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  eventCode: any;
+  eventRegistration: EventRegistration;
   @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
-  constructor(private fb: FormBuilder) { }
+
+  constructor(private fb: FormBuilder) {
+  }
 
   ngOnInit() {
 
   }
 
-  setEventCode(eventCode: any){
-    this.eventCode = eventCode;
-    if(eventCode != null){
+  setEventRegistration(eventRegistration: EventRegistration) {
+    this.eventRegistration = eventRegistration;
+    if (this.eventRegistration != null) {
       this.stepper.next();
     }
   }

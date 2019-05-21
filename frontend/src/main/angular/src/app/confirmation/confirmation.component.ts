@@ -9,7 +9,7 @@ import {PurchaseService} from "../../service/purchase.service";
 })
 export class ConfirmationComponent implements OnInit, OnChanges {
   @Input() eventCode: string;
-  private eventRegistration: any;
+  eventRegistration: any;
   constructor(private eventCodeService: EventRegistrationService, private purchaseSerivce: PurchaseService) { }
 
   ngOnInit() {

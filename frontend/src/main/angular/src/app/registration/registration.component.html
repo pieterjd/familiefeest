@@ -5,20 +5,20 @@
         <div class="alert alert-info" role="alert">
           Vul de code van de uitnodiging in
         </div>
-        <app-eventcode-checker (eventCodeValid)="setEventCode($event)"></app-eventcode-checker>
-        <div *ngIf="eventCode?.id">
-          Code voor {{eventCode.user.name}}
+        <app-eventcode-checker (eventCodeValid)="setEventRegistration($event)"></app-eventcode-checker>
+        <div *ngIf="eventRegistration">
+          Code voor {{eventRegistration.user.name}}
         </div>
         <div>
-          <button mat-button matStepperNext *ngIf="eventCode">Next</button>
+          <button mat-button matStepperNext *ngIf="eventRegistration">Next</button>
         </div>
       </div>
     </mat-step>
     <mat-step>
       <div class="alert alert-info" role="alert">
-        Kies een menu voor elk gezinslid
+        Kies een menu voor elk gezinslid - {{eventRegistration?.code}} - {{eventRegistration?.user.name}}
       </div>
-      <app-menulist [eventCode]="eventCode?.code"></app-menulist>
+      <app-menulist [eventCode]="eventRegistration?.code"></app-menulist>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -28,7 +28,7 @@
       <div class="alert alert-info" role="alert">
         Bevestiging
       </div>
-      <app-confirmation [eventCode]="eventCode?.code"></app-confirmation>
+      <app-confirmation [eventCode]="eventRegistration?.code"></app-confirmation>
       <div>
         <button mat-button matStepperPrevious>Back</button>
       </div>

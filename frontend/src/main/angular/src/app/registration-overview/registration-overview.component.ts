@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute, ParamMap} from "@angular/router";
 import {EventRegistrationService} from "../event-registration.service";
 import {EventRegistration} from "../../model/eventregistration";
 
@@ -9,10 +9,12 @@ import {EventRegistration} from "../../model/eventregistration";
   styleUrls: ['./registration-overview.component.css']
 })
 export class RegistrationOverviewComponent implements OnInit {
-  private eventRegistrations: EventRegistration[];
-  constructor(private route:ActivatedRoute,
-              private router:Router,
-              private eventRegistrationService: EventRegistrationService) { }
+  eventRegistrations: EventRegistration[];
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private eventRegistrationService: EventRegistrationService) {
+  }
 
   ngOnInit() {
     const eventId = this.route.snapshot.paramMap.get('eventId');

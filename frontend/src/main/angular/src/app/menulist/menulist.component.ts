@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {EventItemService} from "../../service/eventitem.service";
 import {EventItem} from "../../model/eventitem";
@@ -24,10 +24,17 @@ export class MenulistComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-
+    this.update();
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("changes");
+    console.log(changes);
+    this.update();
+  }
+
+  update(): void {
+    console.log("updating menu list for" + this.eventCode);
     //whenever the eventCode input changes, then call the service
     if (this.eventCode != null) {
       this.eventItemService.getEventItems(this.eventCode)
@@ -48,7 +55,7 @@ export class MenulistComponent implements OnInit, OnChanges {
     console.log(purchase);
     const dialogRef = this.dialog.open(AddMenuDialog, {
       width: '250px',
-      data: {purchase: purchase}
+      data: purchase
     });
 
     dialogRef.afterClosed().subscribe(purchase => {
@@ -56,7 +63,10 @@ export class MenulistComponent implements OnInit, OnChanges {
       console.log("result from dialig");
       console.log(purchase);
       this.purchaseService.addPurchase(this.eventCode, purchase).subscribe(
-        purchase => {console.log("purchase succeeded");this.purchases.push(purchase)},
+        purchase => {
+          console.log("purchase succeeded");
+          this.purchases.push(purchase)
+        },
         error => console.log("purchase failed")
       );
     });
