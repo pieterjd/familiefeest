@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class EventRegistrationService {
-    private final String CHARACTERS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final String CHARACTERS = "123456789ABCDEFGHIJKLMNPQRSTUVWXYZ";
     private final int CODE_LENGTH = 6;
     private Random random = new Random();
     @Autowired
