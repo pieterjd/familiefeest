@@ -17,8 +17,7 @@ public class EventRegistrationService {
     private final String CHARACTERS = "123456789ABCDEFGHIJKLMNPQRSTUVWXYZ";
     private final int CODE_LENGTH = 6;
     private Random random = new Random();
-    @Autowired
-    private EventRepository eventRepository;
+
     private String generateCode(int length){
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<length;i++){
