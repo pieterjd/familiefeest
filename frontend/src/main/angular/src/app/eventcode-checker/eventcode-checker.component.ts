@@ -34,8 +34,6 @@ export class EventcodeCheckerComponent implements OnInit {
       eventRegistration => {
         this.checkedEventCode = true;
         this.validEventCode = true;
-        console.log("subscribed "+eventRegistration);
-        console.log(eventRegistration);
         this.eventCode = eventRegistration.code;
         this.eventCodeValid.emit(eventRegistration);
       },

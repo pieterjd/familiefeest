@@ -28,13 +28,10 @@ export class MenulistComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("changes");
-    console.log(changes);
     this.update();
   }
 
   update(): void {
-    console.log("updating menu list for" + this.eventCode);
     //whenever the eventCode input changes, then call the service
     if (this.eventCode != null) {
       this.eventItemService.getEventItems(this.eventCode)
@@ -51,8 +48,7 @@ export class MenulistComponent implements OnInit, OnChanges {
 
   openDialog(ei: EventItem): void {
     let purchase = new Purchase(ei, null);
-    console.log("showing dialog for: ");
-    console.log(purchase);
+
     const dialogRef = this.dialog.open(AddMenuDialog, {
       width: '250px',
       data: purchase
@@ -64,7 +60,6 @@ export class MenulistComponent implements OnInit, OnChanges {
       console.log(purchase);
       this.purchaseService.addPurchase(this.eventCode, purchase).subscribe(
         purchase => {
-          console.log("purchase succeeded");
           this.purchases.push(purchase)
         },
         error => console.log("purchase failed")
@@ -74,9 +69,6 @@ export class MenulistComponent implements OnInit, OnChanges {
 
 }
 
-export interface MenuData {
-  beneficiary: string;
-}
 
 
 @Component({

@@ -28,7 +28,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   refreshConfirmationComponent(){
-    console.log("refreshing confirmation");
     this.confirmationComponent.refresh();
   }
 
