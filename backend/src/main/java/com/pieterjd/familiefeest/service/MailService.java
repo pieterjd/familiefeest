@@ -50,7 +50,11 @@ public class MailService {
 
     private String purchaseToString(EventRegistration er) {
         return er.getPurchasedItems().stream()
-                .map(pi ->  String.format("* %s voor %s\n",pi.getEventItem().getTitle(),pi.getBeneficiary()))
+                .map(pi ->  String.format("* %s voor %s (%s euro)\n",
+                        pi.getEventItem().getTitle(),
+                        pi.getBeneficiary(),
+                        currencyFormatter.format(pi.getEventItem().getPrice()))
+                )
                 .collect(Collectors.joining("\n"));
 
     }

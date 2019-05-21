@@ -21,7 +21,7 @@ import java.util.List;
 
 public class EventItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     @JsonProperty
