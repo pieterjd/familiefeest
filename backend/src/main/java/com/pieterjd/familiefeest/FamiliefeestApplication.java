@@ -15,16 +15,5 @@ public class FamiliefeestApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FamiliefeestApplication.class, args);
 	}
-	@Bean
-	@Autowired
-	CommandLineRunner demo(JavaMailSender mailSender){
-		return (args)->{
-			SimpleMailMessage smm = new SimpleMailMessage();
-			smm.setTo("drouillon@hotmail.com");
-			smm.setSubject("test mail from springboot");
-			smm.setText("Some text to send");
-			mailSender.send(smm);
-		};
-	}
 
 }
