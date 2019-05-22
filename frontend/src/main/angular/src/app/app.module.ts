@@ -29,6 +29,7 @@ import { EventcodeCheckerComponent } from './eventcode-checker/eventcode-checker
 import {AddMenuDialog, MenulistComponent} from './menulist/menulist.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { RegistrationOverviewComponent } from './registration-overview/registration-overview.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { RegistrationOverviewComponent } from './registration-overview/registrat
         MenulistComponent,
         AddMenuDialog,
         ConfirmationComponent,
-        RegistrationOverviewComponent
+        RegistrationOverviewComponent,
+        HomeComponent
     ],
     entryComponents: [
         AddMenuDialog
