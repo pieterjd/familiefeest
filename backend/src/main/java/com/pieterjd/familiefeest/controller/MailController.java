@@ -15,9 +15,15 @@ public class MailController {
     @Autowired
     private EventRegistrationRepository eventRegistrationRepository;
 
-    @PostMapping("/{eventCode}")
+    @PostMapping("/purchasemail/{eventCode}")
     public void sendPurchaseConfirmation(@PathVariable String eventCode) {
         EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
         mailService.sendPurchaseConfirmationMail(er);
+    }
+
+    @PostMapping("/invitationmail/{eventCode}")
+    public void sendInvitationConfirmation(@PathVariable String eventCode) {
+        EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
+        mailService.sendInvitationMail(er);
     }
 }
