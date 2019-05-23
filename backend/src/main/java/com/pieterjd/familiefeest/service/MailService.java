@@ -45,7 +45,7 @@ public class MailService {
     public void sendInvitationMail(EventRegistration er) {
         SimpleMailMessage smm = getSimpleMailMessage(er);
         String text = String.format(invitationMail,
-                er.getUser().getName(),
+                er.getUser().getFirstName(),
                 er.getCode()
         );
         smm.setText(text);
@@ -57,7 +57,7 @@ public class MailService {
     public void sendPurchaseConfirmationMail(EventRegistration er) {
         SimpleMailMessage smm = getSimpleMailMessage(er);
         String text = String.format(confirmationMail,
-                er.getUser().getName(),
+                er.getUser().getFirstName(),
                 purchaseToString(er),
                 currencyFormatter.format(er.amountAlreadyPaid()),
                 currencyFormatter.format(er.openAmount()),

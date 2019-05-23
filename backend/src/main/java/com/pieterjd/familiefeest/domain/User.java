@@ -22,7 +22,10 @@ public class User {
     @GeneratedValue
     private Long id;
     @Column
-    private String name;
+    private String firstName;
+    private String lastName;
+    @Column(name = "name")
+    private String fullName;
     @Column
     private String email;
 }
