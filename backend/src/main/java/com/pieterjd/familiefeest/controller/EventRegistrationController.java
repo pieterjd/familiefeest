@@ -1,9 +1,9 @@
 package com.pieterjd.familiefeest.controller;
 
 import com.pieterjd.familiefeest.domain.*;
-import com.pieterjd.familiefeest.dto.PurchaseDto;
 import com.pieterjd.familiefeest.repository.*;
 import com.pieterjd.familiefeest.service.EventRegistrationService;
+import com.pieterjd.familiefeest.service.MailService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,14 +20,16 @@ public class EventRegistrationController {
     private final EventRegistrationRepository eventRegistrationRepository;
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
+    private final MailService mailService;
 
     @Autowired
-    public EventRegistrationController(EventRegistrationService eventRegistrationService, EventRegistrationRepository eventRegistrationRepository, EventRepository eventRepository, UserRepository userRepository) {
+    public EventRegistrationController(EventRegistrationService eventRegistrationService, EventRegistrationRepository eventRegistrationRepository, EventRepository eventRepository, UserRepository userRepository, MailService mailService) {
         this.eventRegistrationService = eventRegistrationService;
         this.eventRegistrationRepository = eventRegistrationRepository;
         this.eventRepository = eventRepository;
         this.userRepository = userRepository;
 
+        this.mailService = mailService;
     }
 
     @GetMapping("/{eventCode}")
@@ -51,6 +53,8 @@ public class EventRegistrationController {
                     .build();
             eventRegistrationRepository.save(er);
             result.add(er);
+            //mailService.sendInvitationMail(er);
+
         }
         return result;
     }
