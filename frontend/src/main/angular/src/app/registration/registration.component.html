@@ -16,7 +16,7 @@
     </mat-step>
     <mat-step>
       <div class="alert alert-info" role="alert">
-        Kies een menu voor elk gezinslid - {{eventRegistration?.code}} - {{eventRegistration?.user.name}}
+        Kies een menu voor elk gezinslid - {{eventRegistration?.code}} - {{eventRegistration?.user.fullName}}
       </div>
       <app-menulist [eventCode]="eventRegistration?.code"></app-menulist>
       <div>
