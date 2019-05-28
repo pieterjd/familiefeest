@@ -2,6 +2,8 @@ package com.pieterjd.familiefeest.service;
 
 import com.pieterjd.familiefeest.domain.EventRegistration;
 import lombok.extern.log4j.Log4j2;
+import org.jtwig.JtwigModel;
+import org.jtwig.JtwigTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -43,11 +45,14 @@ public class MailService {
             "Pieter-Jan & Margriet";
 
     public void sendInvitationMail(EventRegistration er) {
+        JtwigTemplate templ = JtwigTemplate.classpathTemplate(String.format("templates/%s.invitation.twig",er.getEvent().getId().toString()));
+        JtwigModel model = JtwigModel.newModel().with("eventRegistration",er);
+        String text = templ.render(model);
         SimpleMailMessage smm = getSimpleMailMessage(er);
-        String text = String.format(invitationMail,
+        /*String text = String.format(invitationMail,
                 er.getUser().getFirstName(),
                 er.getCode()
-        );
+        );*/
         smm.setText(text);
         mailSender.send(smm);
         log.info(String.format("Invitation mail sent to %s",smm.getTo()));
