@@ -1,0 +1,11 @@
+Beste {{ eventRegistration.user.firstName}},
+Bedankt voor je inschrijving. Je hebt volgende reservaties:
+{% for pi in eventRegistration.purchasedItems %}
+* {{pi.eventItem.title}} voor {{pi.beneficiary}}
+{% endfor %}
+
+Tot nu toe betaalde je al {{eventRegistration.purchaseTotal |number_format(2,'.')}} euro. Graag het openstaand bedrag {{eventRegistration.openAmount|number_format(2,'.')}} euro over te schrijven op rekening <TODO>
+met vermelding'Familiefeest Van Ryckeghem {{eventRegistration.code}}'.
+
+Tot 22 september!
+Pieter-Jan & Margriet

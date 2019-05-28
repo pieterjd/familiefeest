@@ -29,13 +29,7 @@ public class MailService {
     }
 
 
-    private static final String confirmationMail = "Beste %s,\n\n" +
-            "Bedankt voor je inschrijving. Je hebt volgende reservaties:\n " +
-            "%s\n\n" +
-            "Tot nu toe betaalde je al %s euro. Graag het openstaand bedrag %s over te schrijven op rekening <TODO> " +
-            "met vermelding'Familiefeest Van Ryckeghem %s'.\n\n" +
-            "Tot 22 september!\n" +
-            "Pieter-Jan & Margriet";
+
 
     private static final String invitationMail = "Beste %s,\n\n" +
             "Graag nodigen we je uit op het familiefeest van de familie Van Ryckeghem. Om alles vlot te laten verlopen, " +
@@ -61,13 +55,9 @@ public class MailService {
 
     public void sendPurchaseConfirmationMail(EventRegistration er) {
         SimpleMailMessage smm = getSimpleMailMessage(er);
-        String text = String.format(confirmationMail,
-                er.getUser().getFirstName(),
-                purchaseToString(er),
-                currencyFormatter.format(er.amountAlreadyPaid()),
-                currencyFormatter.format(er.openAmount()),
-                er.getCode()
-        );
+        JtwigTemplate templ = JtwigTemplate.classpathTemplate(String.format("templates/%s.confirmation.twig",er.getEvent().getId().toString()));
+        JtwigModel model = JtwigModel.newModel().with("eventRegistration",er);
+        String text = templ.render(model);
         smm.setText(text);
         mailSender.send(smm);
 
