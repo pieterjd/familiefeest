@@ -3,5 +3,6 @@ export class EventItem {
   title: string;
   description: string;
   type: string;
+  price: number;
 
 }
