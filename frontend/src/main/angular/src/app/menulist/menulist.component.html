@@ -1,14 +1,16 @@
-<mat-list>
-  <mat-list-item *ngFor="let eventItem of eventItems">
-    <div>inside loop!</div>
-    <h3 matLine>{{eventItem.title}}</h3>
-
-    <button mat-icon-button (click)="openDialog(eventItem)" matTooltip="voeg dit menu toe voor een gezinslid">
-      <mat-icon>add_circle</mat-icon>
-    </button>
-  </mat-list-item>
-
-</mat-list>
+<div class="row">
+  <div class="col-6 mb-2" *ngFor="let eventItem of eventItems">
+    <div class="card mb-2">
+      <div class="card-body">
+        <h5 class="card-title">{{eventItem.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{eventItem.price | currency :'EUR'}}</h6>
+        <p class="card-text">{{eventItem.description}}</p>
+        <p class="card-text text-center">price :|ln</p>
+      </div>
+    </div>
+    <button class="btn btn-outline-primary btn-block" (click)="openDialog(eventItem)">Bestellen</button>
+  </div>
+</div>
 <h2>Reeds bestelde menus</h2>
 <ol>
   <li *ngFor="let purchase of purchases">

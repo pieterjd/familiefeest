@@ -3,7 +3,7 @@
     <mat-step>
       <div >
         <div class="alert alert-info" role="alert">
-          Vul de code van de uitnodiging in
+          Vul de code van de uitnodiging in en klik op 'Check code'
         </div>
         <app-eventcode-checker (eventCodeValid)="setEventRegistration($event)"></app-eventcode-checker>
         <div *ngIf="eventRegistration">
