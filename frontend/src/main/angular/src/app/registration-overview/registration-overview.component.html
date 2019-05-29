@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
   <tr>
+    <th scope="col">Code</th>
     <th scope="col">name</th>
     <th scope="col">purchases</th>
     <th scope="col">total</th>
@@ -10,7 +11,8 @@
   </thead>
   <tbody>
   <tr *ngFor="let er of eventRegistrations">
-    <td>{{er.user.name}}</td>
+    <td>{{er.code}}</td>
+    <td>{{er.user.fullName}}</td>
     <td>
       <ol>
         <li *ngFor="let purchase of er.purchasedItems">
