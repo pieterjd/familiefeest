@@ -6,6 +6,7 @@ import com.pieterjd.familiefeest.service.EventRegistrationService;
 import com.pieterjd.familiefeest.service.MailService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ public class EventRegistrationController {
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
     private final MailService mailService;
+
+    @Value("${secret.token}")
+    private String expectedSecretToken;
 
     @Autowired
     public EventRegistrationController(EventRegistrationService eventRegistrationService, EventRegistrationRepository eventRegistrationRepository, EventRepository eventRepository, UserRepository userRepository, MailService mailService) {
@@ -39,7 +43,14 @@ public class EventRegistrationController {
     }
 
     @PostMapping("/upload/{eventId}")
-    public List<EventRegistration> upload(@PathVariable Long eventId,@RequestBody List<User> users){
+    public List<EventRegistration> upload(
+            @PathVariable Long eventId,
+            @RequestBody List<User> users,
+            @RequestHeader(name = "secret-token") String secretToken){
+        log.info("received postman token: "+secretToken);
+        if(!expectedSecretToken.equals(secretToken)){
+            throw new RuntimeException("Access denied");
+        }
         Event e = eventRepository.findById(eventId).orElseThrow(()->new RuntimeException("invalid eventid"));
         List<EventRegistration> result = new ArrayList<>();
         for(User u: users){

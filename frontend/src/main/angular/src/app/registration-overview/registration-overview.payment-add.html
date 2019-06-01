@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Add payment</h1>
+<div mat-dialog-content>
+  add payment for <code>{{data.eventRegistration.code}}</code>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.payment.date" required type="date">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.payment.amount" required type="number">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Annuleren</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial *ngIf="data.payment.amount>0">Ok</button>
+</div>

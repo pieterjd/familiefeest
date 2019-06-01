@@ -1,5 +1,6 @@
 package com.pieterjd.familiefeest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 @Entity
 public class Payment {

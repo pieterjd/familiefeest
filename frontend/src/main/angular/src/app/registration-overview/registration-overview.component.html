@@ -1,3 +1,13 @@
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-2">
+      <label for="secrettoken">Secret header token:</label>
+    </div>
+    <div class="col-2">
+      <input type="text" id="secrettoken" [(ngModel)]="token">
+    </div>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -7,6 +17,7 @@
     <th scope="col">total</th>
     <th scope="col">paid</th>
     <th scope="col">open</th>
+    <th scope="col"></th>
   </tr>
   </thead>
   <tbody>
@@ -23,6 +34,9 @@
     <td>{{er.purchaseTotal | currency :'EUR'}}</td>
     <td>{{er.amountAlreadyPaid | currency :'EUR'}}</td>
     <td>{{er.openAmount | currency :'EUR'}}</td>
+    <td>
+      <button class="btn btn-outline-primary btn-block" (click)="openDialog(er)">Add payment</button>
+    </td>
   </tr>
   </tbody>
 </table>
