@@ -70,7 +70,7 @@ export class AddPaymentDialog {
 
   constructor(
     public dialogRef: MatDialogRef<AddPaymentDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: number) {
+    @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   onNoClick(): void {
