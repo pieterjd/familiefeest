@@ -25,7 +25,6 @@ export class RegistrationOverviewComponent implements OnInit {
   }
 
   update(): void {
-    this.token = "default token";
     const eventId = this.route.snapshot.paramMap.get('eventId');
     this.eventRegistrationService.getAllEventRegistration(eventId).subscribe(
       data => this.eventRegistrations = data
@@ -33,6 +32,7 @@ export class RegistrationOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.token = "default token";
     this.update();
   }
 
