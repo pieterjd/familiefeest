@@ -4,8 +4,8 @@
       <div class="card-body">
         <h5 class="card-title">{{eventItem.title}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{eventItem.price | currency :'EUR'}}</h6>
-        <p class="card-text">{{eventItem.description}}</p>
-        <p class="card-text text-center">price :|ln</p>
+        <p class="card-text" [innerHTML]="eventItem.description"></p>
+        <p class="card-text text-center">{{eventItem.price | currency :'EUR'}}</p>
       </div>
     </div>
     <button class="btn btn-outline-primary btn-block" (click)="openDialog(eventItem)">Bestellen</button>
