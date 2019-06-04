@@ -26,7 +26,7 @@ public class EventItem {
     @Column
     @JsonProperty
     private String title;
-    @Column
+    @Column(length = 1000)
     @JsonProperty
     private String description;
     @Enumerated(EnumType.STRING)
