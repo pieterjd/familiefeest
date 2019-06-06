@@ -7,8 +7,12 @@ import org.jtwig.JtwigTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.text.NumberFormat;
 import java.util.Currency;
 import java.util.stream.Collectors;
@@ -38,36 +42,40 @@ public class MailService {
             "Tot 22 september!\n" +
             "Pieter-Jan & Margriet";
 
-    public void sendInvitationMail(EventRegistration er) {
+    public void sendInvitationMail(EventRegistration er) throws MessagingException {
         JtwigTemplate templ = JtwigTemplate.classpathTemplate(String.format("templates/%s.invitation.twig",er.getEvent().getId().toString()));
         JtwigModel model = JtwigModel.newModel().with("eventRegistration",er);
         String text = templ.render(model);
-        SimpleMailMessage smm = getSimpleMailMessage(er);
+        MimeMessageHelper smm = getMimeMessageHelper(er);
+
+        ;
+
         /*String text = String.format(invitationMail,
                 er.getUser().getFirstName(),
                 er.getCode()
         );*/
-        smm.setText(text);
-        mailSender.send(smm);
-        log.info(String.format("Invitation mail sent to %s",smm.getTo()));
+        smm.setText(text,true);
+        mailSender.send(smm.getMimeMessage());
+        log.info(String.format("Invitation mail sent to %s",smm.getMimeMessage().getRecipients(Message.RecipientType.TO)));
 
     }
 
-    public void sendPurchaseConfirmationMail(EventRegistration er) {
-        SimpleMailMessage smm = getSimpleMailMessage(er);
+    public void sendPurchaseConfirmationMail(EventRegistration er) throws MessagingException {
+        MimeMessageHelper smm = getMimeMessageHelper(er);
         JtwigTemplate templ = JtwigTemplate.classpathTemplate(String.format("templates/%s.confirmation.twig",er.getEvent().getId().toString()));
         JtwigModel model = JtwigModel.newModel().with("eventRegistration",er);
         String text = templ.render(model);
-        smm.setText(text);
-        mailSender.send(smm);
+        smm.setText(text,true);
+        mailSender.send(smm.getMimeMessage());
 
     }
 
-    private SimpleMailMessage getSimpleMailMessage(EventRegistration er) {
-        SimpleMailMessage smm = new SimpleMailMessage();
-        smm.setTo(er.getUser().getEmail());
-        smm.setSubject(er.getEvent().getTitle());
-        return smm;
+    private MimeMessageHelper getMimeMessageHelper(EventRegistration er) throws MessagingException {
+        MimeMessage smm = mailSender.createMimeMessage();
+        MimeMessageHelper mmh = new MimeMessageHelper(smm);
+        mmh.setTo(er.getUser().getEmail());
+        mmh.setSubject(er.getEvent().getTitle());
+        return mmh;
     }
 
     private String purchaseToString(EventRegistration er) {

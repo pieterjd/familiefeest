@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+
 @RestController
 @RequestMapping("/api/mail")
 
@@ -24,7 +26,7 @@ public class MailController {
 
     @PostMapping("/purchasemail/{eventCode}")
     public void sendPurchaseConfirmation(@PathVariable String eventCode,
-                                         @RequestHeader(name = "secret-token") String secretToken) {
+                                         @RequestHeader(name = "secret-token") String secretToken) throws MessagingException {
         log.info("received postman token: "+secretToken);
         if(!expectedSecretToken.equals(secretToken)){
             throw new RuntimeException("Access denied");
@@ -35,7 +37,7 @@ public class MailController {
 
     @PostMapping("/invitationmail/{eventCode}")
     public void sendInvitationConfirmation(@PathVariable String eventCode,
-                                           @RequestHeader(name = "secret-token") String secretToken) {
+                                           @RequestHeader(name = "secret-token") String secretToken) throws MessagingException {
 
         log.info("received postman token: "+secretToken);
         if(!expectedSecretToken.equals(secretToken)){
