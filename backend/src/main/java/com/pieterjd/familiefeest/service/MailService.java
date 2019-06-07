@@ -35,12 +35,7 @@ public class MailService {
 
 
 
-    private static final String invitationMail = "Beste %s,\n\n" +
-            "Graag nodigen we je uit op het familiefeest van de familie Van Ryckeghem. Om alles vlot te laten verlopen, " +
-            "kan je de menukeuzes van je gezin online doorgeven op https://shielded-ridge-64229.herokuapp.com <TO UPDATE>. " +
-            "Je unieke reservatiecode is %s.\n\nOp de website kan je ook alle informatie nog eens rustig doorlezen.\n\n" +
-            "Tot 22 september!\n" +
-            "Pieter-Jan & Margriet";
+
 
     public void sendInvitationMail(EventRegistration er) throws MessagingException {
         JtwigTemplate templ = JtwigTemplate.classpathTemplate(String.format("templates/%s.invitation.twig",er.getEvent().getId().toString()));
