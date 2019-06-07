@@ -1,6 +1,6 @@
 <div class="row">
-  <mat-horizontal-stepper [linear]="true" class="col">
-    <mat-step>
+  <mat-horizontal-stepper [linear]="true" class="col" labelPosition="bottom">
+    <mat-step label="Vul je unieke code in">
       <div >
         <div class="alert alert-info" role="alert">
           Vul de code van de uitnodiging in en klik op 'Check code'
@@ -14,7 +14,7 @@
         </div>
       </div>
     </mat-step>
-    <mat-step>
+    <mat-step label="Voeg menukeuzes toe">
       <div class="alert alert-info" role="alert">
         Kies een menu voor elk gezinslid - {{eventRegistration?.code}} - {{eventRegistration?.user.fullName}}
       </div>
@@ -24,7 +24,7 @@
         <button mat-button matStepperNext (click)="refreshConfirmationComponent()">Naar betaalinstructies</button>
       </div>
     </mat-step>
-    <mat-step>
+    <mat-step label="Overzicht">
       <div class="alert alert-info" role="alert">
         Bevestiging
       </div>
