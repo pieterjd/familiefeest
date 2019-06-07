@@ -33,36 +33,26 @@ public class MailService {
     }
 
 
-
+    private void sendMail(EventRegistration er, String templatePath) throws MessagingException {
+        JtwigTemplate templ = JtwigTemplate.classpathTemplate(templatePath);
+        JtwigModel model = JtwigModel.newModel().with("eventRegistration",er);
+        String text = templ.render(model);
+        MimeMessageHelper smm = getMimeMessageHelper(er);
+        smm.setText(text,true);
+        mailSender.send(smm.getMimeMessage());
+    }
 
 
 
     public void sendInvitationMail(EventRegistration er) throws MessagingException {
-        JtwigTemplate templ = JtwigTemplate.classpathTemplate(String.format("templates/%s.invitation.twig",er.getEvent().getId().toString()));
-        JtwigModel model = JtwigModel.newModel().with("eventRegistration",er);
-        String text = templ.render(model);
-        MimeMessageHelper smm = getMimeMessageHelper(er);
-
-        ;
-
-        /*String text = String.format(invitationMail,
-                er.getUser().getFirstName(),
-                er.getCode()
-        );*/
-        smm.setText(text,true);
-        mailSender.send(smm.getMimeMessage());
-        log.info(String.format("Invitation mail sent to %s",smm.getMimeMessage().getRecipients(Message.RecipientType.TO)));
+        sendMail(er,String.format("templates/%s.invitation.twig",er.getEvent().getId().toString()));
+        log.info(String.format("Invitation mail sent to %s",er.getUser().getEmail()));
 
     }
 
     public void sendPurchaseConfirmationMail(EventRegistration er) throws MessagingException {
-        MimeMessageHelper smm = getMimeMessageHelper(er);
-        JtwigTemplate templ = JtwigTemplate.classpathTemplate(String.format("templates/%s.confirmation.twig",er.getEvent().getId().toString()));
-        JtwigModel model = JtwigModel.newModel().with("eventRegistration",er);
-        String text = templ.render(model);
-        smm.setText(text,true);
-        mailSender.send(smm.getMimeMessage());
-
+        sendMail(er, String.format("templates/%s.confirmation.twig",er.getEvent().getId().toString()));
+        log.info(String.format("Confirmation mail sent to %s",er.getUser().getEmail()));
     }
 
     private MimeMessageHelper getMimeMessageHelper(EventRegistration er) throws MessagingException {
