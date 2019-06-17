@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {EventRegistrationService} from "../event-registration.service";
 import {PurchaseService} from "../../service/purchase.service";
+import {MailService} from "../../service/mail.service";
 
 @Component({
   selector: 'app-confirmation',
@@ -11,7 +12,9 @@ export class ConfirmationComponent implements OnInit, OnChanges {
   @Input() eventCode: string;
   eventRegistration: any;
 
-  constructor(private eventCodeService: EventRegistrationService, private purchaseSerivce: PurchaseService) {
+  constructor(private eventCodeService: EventRegistrationService,
+              private purchaseSerivce: PurchaseService,
+              private mailService: MailService) {
   }
 
   ngOnInit() {
@@ -32,6 +35,9 @@ export class ConfirmationComponent implements OnInit, OnChanges {
         data => this.eventRegistration = data
       );
 
+  }
+  sendPurchaseMail(): void{
+    this.mailService.sendPurchaseMail(this.eventCode);
   }
 
 }

@@ -7,18 +7,18 @@ import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 // import widgets
 import {
-    MatCardModule,
-    MatToolbarModule,
-    MatStepperModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSelectModule,
-    MatListModule,
-    MatIconModule,
-    MatDialogModule,
-    MatDialog,
-    MatTooltipModule
+  MatCardModule,
+  MatToolbarModule,
+  MatStepperModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatInputModule,
+  MatSelectModule,
+  MatListModule,
+  MatIconModule,
+  MatDialogModule,
+  MatDialog,
+  MatTooltipModule
 } from "@angular/material";
 
 import {AppComponent} from './app.component';
@@ -30,48 +30,50 @@ import {AddMenuDialog, MenulistComponent} from './menulist/menulist.component';
 import {ConfirmationComponent} from './confirmation/confirmation.component';
 import {AddPaymentDialog, RegistrationOverviewComponent} from './registration-overview/registration-overview.component';
 import {HomeComponent} from './home/home.component';
+import {MailService} from "../service/mail.service";
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        RegistrationComponent,
-        EventcodeCheckerComponent,
-        MenulistComponent,
-        AddMenuDialog,
-        ConfirmationComponent,
-        RegistrationOverviewComponent,
-        AddPaymentDialog,
-        HomeComponent
-    ],
-    entryComponents: [
-        AddMenuDialog,
-        AddPaymentDialog
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatStepperModule,
-        MatFormFieldModule,
-        AppRoutingModule,
-        MatButtonModule,
-        MatInputModule,
-        MatSelectModule,
-        MatListModule,
-        MatIconModule,
-        MatDialogModule,
-        MatTooltipModule,
-        HttpClientModule
-    ],
-    providers: [
-        EventRegistrationService,
-        MatDialog
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    RegistrationComponent,
+    EventcodeCheckerComponent,
+    MenulistComponent,
+    AddMenuDialog,
+    ConfirmationComponent,
+    RegistrationOverviewComponent,
+    AddPaymentDialog,
+    HomeComponent
+  ],
+  entryComponents: [
+    AddMenuDialog,
+    AddPaymentDialog
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    AppRoutingModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatListModule,
+    MatIconModule,
+    MatDialogModule,
+    MatTooltipModule,
+    HttpClientModule
+  ],
+  providers: [
+    EventRegistrationService,
+    MailService,
+    MatDialog
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

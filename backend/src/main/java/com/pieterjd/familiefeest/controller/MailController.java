@@ -26,9 +26,9 @@ public class MailController {
 
     @PostMapping("/purchasemail/{eventCode}")
     public void sendPurchaseConfirmation(@PathVariable String eventCode,
-                                         @RequestHeader(name = "secret-token") String secretToken) throws MessagingException {
-        log.info("received postman token: "+secretToken);
-        if(!expectedSecretToken.equals(secretToken)){
+                                         @RequestHeader(name = "secret-token", required = false) String secretToken) throws MessagingException {
+        log.info("received postman token: " + secretToken);
+        if (secretToken != null && !expectedSecretToken.equals(secretToken)) {
             throw new RuntimeException("Access denied");
         }
         EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
@@ -37,10 +37,10 @@ public class MailController {
 
     @PostMapping("/invitationmail/{eventCode}")
     public void sendInvitationConfirmation(@PathVariable String eventCode,
-                                           @RequestHeader(name = "secret-token") String secretToken) throws MessagingException {
+                                           @RequestHeader(name = "secret-token", required = false) String secretToken) throws MessagingException {
 
-        log.info("received postman token: "+secretToken);
-        if(!expectedSecretToken.equals(secretToken)){
+        log.info("received postman token: " + secretToken);
+        if (secretToken != null && !expectedSecretToken.equals(secretToken)) {
             throw new RuntimeException("Access denied");
         }
         EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
