@@ -1,20 +1,24 @@
 <html>
+
 <body>
-Beste {{ eventRegistration.user.firstName}},
-<div>
-Bedankt voor je inschrijving. Je hebt volgende reservaties:
-<ol>
-{% for pi in eventRegistration.purchasedItems %}
-<li>{{pi.eventItem.title}} voor {{pi.beneficiary}}</li>
-{% endfor %}
-</ol>
-</div>
-<div>
-Tot nu toe betaalde je al {{eventRegistration.amountAlreadyPaid |number_format(2,'.')}} euro. Graag het openstaand bedrag <b>{{eventRegistration.openAmount|number_format(2,'.')}} euro</b> over te schrijven op rekening <b>BE88 7555 6975 7441 (BIC: AXABBE22)</b> met vermelding <code>Familiefeest Van Ryckeghem {{eventRegistration.code}}</code>.
-</div>
-<div>
-Tot 22 september!<br/>
-Pieter-Jan & Margriet
-</div>
+    Beste {{ eventRegistration.user.firstName}},
+    <div>
+        Bedankt voor je inschrijving. Je hebt volgende reservaties:
+        <ol>
+            {% for pi in eventRegistration.purchasedItems %}
+            <li>{{pi.eventItem.title}} voor {{pi.beneficiary}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    <div>
+        Tot nu toe betaalde je al {{eventRegistration.amountAlreadyPaid |number_format(2,'.')}} euro. Graag het openstaand bedrag <b>{{eventRegistration.openAmount|number_format(2,'.')}} euro</b> over te schrijven op rekening <b>BE88 7555 6975 7441 (BIC: AXABBE22)</b> met vermelding <code>Familiefeest Van Ryckeghem {{eventRegistration.code}}</code>.
+    </div>
+    <div>
+        <div>
+            Tot 22 september!
+            <br/> Pieter-Jan & Margriet
+        </div>
+    </div>
 </body>
+
 </html>
