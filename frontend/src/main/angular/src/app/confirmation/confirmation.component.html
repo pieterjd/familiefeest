@@ -1,3 +1,6 @@
+<div class="alert alert-info" role="alert" *ngIf="emailSent">
+  <i class="fas fa-fw fa-info-circle mr-3 mt-1"></i>Bevestigingsmail is verzonden!
+</div>
 <p>Bedankt voor je reservatie!</p>
 <p>Het totaal bedrag is {{eventRegistration?.purchaseTotal |currency:'EUR'}},
   waarvan {{eventRegistration?.amountAlreadyPaid|currency:'EUR'}} reeds betaald. Het saldo is

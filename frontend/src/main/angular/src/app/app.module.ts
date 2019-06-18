@@ -18,7 +18,7 @@ import {
   MatIconModule,
   MatDialogModule,
   MatDialog,
-  MatTooltipModule
+  MatTooltipModule, MatSnackBarModule
 } from "@angular/material";
 
 import {AppComponent} from './app.component';
@@ -66,6 +66,7 @@ import {MailService} from "../service/mail.service";
     MatIconModule,
     MatDialogModule,
     MatTooltipModule,
+    MatSnackBarModule,
     HttpClientModule
   ],
   providers: [
