@@ -17,6 +17,8 @@
         Tot nu toe betaalde je al {{eventRegistration.amountAlreadyPaid |number_format(2,'.')}} euro.
         {% if (eventRegistration.openAmount > 0)%}
         Graag het openstaand bedrag <b>{{eventRegistration.openAmount|number_format(2,'.')}} euro</b> over te schrijven op rekening <b>BE88 7555 6975 7441 (BIC: AXABBE22)</b> met vermelding <code>Familiefeest Van Ryckeghem {{eventRegistration.code}}</code>.
+        {% else %}
+        Het volledige bedrag is voldaan.
         {% endif %}
         </p>
     </div>
