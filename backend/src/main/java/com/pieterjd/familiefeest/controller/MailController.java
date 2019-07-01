@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/mail")
@@ -35,15 +36,17 @@ public class MailController {
         mailService.sendPurchaseConfirmationMail(er);
     }
 
-    @PostMapping("/invitationmail/{eventCode}")
-    public void sendInvitationConfirmation(@PathVariable String eventCode,
+    @PostMapping("/invitationmail")
+    public void sendInvitationConfirmation(@RequestBody List<String> eventCodes,
                                            @RequestHeader(name = "secret-token", required = false) String secretToken) throws MessagingException {
 
         log.info("received postman token: " + secretToken);
         if (secretToken != null && !expectedSecretToken.equals(secretToken)) {
             throw new RuntimeException("Access denied");
         }
-        EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
-        mailService.sendInvitationMail(er);
+        for(String eventCode: eventCodes){
+            EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
+            mailService.sendInvitationMail(er);
+        }
     }
 }
