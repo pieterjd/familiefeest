@@ -1,7 +1,7 @@
 <div class="row">
   <mat-horizontal-stepper [linear]="true" class="col" labelPosition="bottom">
     <mat-step label="Vul je unieke code in">
-      <div >
+      <div>
         <div class="alert alert-info" role="alert">
           Vul de code van de uitnodiging in en klik op 'Check code'
         </div>
@@ -18,17 +18,18 @@
       <div class="alert alert-info" role="alert">
         Kies een menu voor elk gezinslid - {{eventRegistration?.code}} - {{eventRegistration?.user.fullName}}
       </div>
-      <app-menulist [eventCode]="eventRegistration?.code"></app-menulist>
       <div>
-        <button mat-button matStepperPrevious>Terug</button>
-        <button mat-button matStepperNext (click)="refreshConfirmationComponent()">Naar betaalinstructies</button>
+        <button class="mb-2" mat-button matStepperNext (click)="refreshConfirmationComponent()">Naar betaalinstructies</button>
+      </div>
+      <div>
+        <app-menulist [eventCode]="eventRegistration?.code"></app-menulist>
       </div>
     </mat-step>
     <mat-step label="Overzicht">
-      <app-confirmation [eventCode]="eventRegistration?.code"></app-confirmation>
       <div>
         <button mat-button matStepperPrevious>Terug</button>
       </div>
+      <app-confirmation [eventCode]="eventRegistration?.code"></app-confirmation>
     </mat-step>
   </mat-horizontal-stepper>
 </div>
