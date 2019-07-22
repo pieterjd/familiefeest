@@ -31,6 +31,7 @@ import {ConfirmationComponent} from './confirmation/confirmation.component';
 import {AddPaymentDialog, RegistrationOverviewComponent} from './registration-overview/registration-overview.component';
 import {HomeComponent} from './home/home.component';
 import {MailService} from "../service/mail.service";
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {MailService} from "../service/mail.service";
     ConfirmationComponent,
     RegistrationOverviewComponent,
     AddPaymentDialog,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   entryComponents: [
     AddMenuDialog,
