@@ -1,9 +1,10 @@
-import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {EventItemService} from "../../service/eventitem.service";
 import {EventItem} from "../../model/eventitem";
 import {Purchase} from "../../model/purchase";
 import {PurchaseService} from "../../service/purchase.service";
+import {EventRegistration} from "../../model/eventregistration";
 
 
 @Component({
@@ -17,9 +18,12 @@ export class MenulistComponent implements OnInit, OnChanges {
   beneficiary: string;
   purchases: Purchase[];
 
+  @Output() toConfirmation: EventEmitter<boolean>;
+
   constructor(private dialog: MatDialog,
               private eventItemService: EventItemService,
               private purchaseService: PurchaseService) {
+    this.toConfirmation = new EventEmitter<boolean>();
   }
 
   ngOnInit() {
@@ -29,6 +33,10 @@ export class MenulistComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.update();
+  }
+
+  toConfirmationListener(event: any) {
+    this.toConfirmation.emit(true);
   }
 
   update(): void {
@@ -67,8 +75,8 @@ export class MenulistComponent implements OnInit, OnChanges {
     });
   }
 
-}
 
+}
 
 
 @Component({

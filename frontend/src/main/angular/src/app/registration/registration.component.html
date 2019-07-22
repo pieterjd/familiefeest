@@ -22,7 +22,8 @@
         <button class="mb-2" mat-button matStepperNext (click)="refreshConfirmationComponent()">Naar betaalinstructies</button>
       </div>
       <div>
-        <app-menulist [eventCode]="eventRegistration?.code"></app-menulist>
+        <app-menulist [eventCode]="eventRegistration?.code"
+        (toConfirmation)="next()"></app-menulist>
       </div>
     </mat-step>
     <mat-step label="Overzicht">

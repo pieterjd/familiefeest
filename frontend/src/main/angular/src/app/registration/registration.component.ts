@@ -32,12 +32,16 @@ export class RegistrationComponent implements OnInit {
   setEventRegistration(eventRegistration: EventRegistration) {
     this.eventRegistration = eventRegistration;
     if (this.eventRegistration != null) {
-      this.stepper.next();
+      this.next();
     }
   }
 
   refreshConfirmationComponent(){
     this.confirmationComponent.refresh();
+  }
+
+  next(): void{
+    this.stepper.next();
   }
 
 }
