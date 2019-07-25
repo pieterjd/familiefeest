@@ -3,7 +3,7 @@
        *ngFor="let eventItem of eventItems">
     <div class="card mb-2">
       <div class="card-body">
-        <span>{{eventItem.title}} - {{eventItem.price | currency :'EUR'}}</span>
+        <span>{{eventItem.title}} - <b>{{eventItem.price | currency :'EUR'}}</b></span>
       </div>
     </div>
     <button class="btn btn-outline-primary btn-block" (click)="openDialog(eventItem)">Bestellen</button>
