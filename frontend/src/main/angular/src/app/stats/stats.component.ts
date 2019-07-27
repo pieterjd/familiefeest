@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {EventRegistrationService} from "../event-registration.service";
-import {EventRegistration} from "../../model/eventregistration";
+import {StatisticsService} from "../../service/statistics.service";
+import {Statistics} from "../../model/statistics";
 
 @Component({
   selector: 'app-stats',
@@ -8,7 +8,7 @@ import {EventRegistration} from "../../model/eventregistration";
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-  eventRegistrations: EventRegistration[];
+  statistics: Statistics;
 
   attendeesMapping: any = {
     '=1': 'aanwezige',
@@ -22,35 +22,21 @@ export class StatsComponent implements OnInit {
   };
 
 
-  constructor(private eventRegistrationService: EventRegistrationService) {
+  constructor(private statService: StatisticsService) {
   }
 
   ngOnInit() {
-    this.eventRegistrationService.getAllEventRegistration(1)
+    this.statService.getStatistics(1)
       .subscribe(
-        data => this.eventRegistrations = data
+        data => this.statistics = data
       )
   }
 
   getNumberAttendees(): number {
-    let attendees: number = 0;
-    if (this.eventRegistrations != undefined) {
-      for (let er of this.eventRegistrations) {
-        attendees = attendees + er.purchasedItems.length;
-      }
-    }
-    return attendees;
+    return this.statistics.numberOfAttendees;
   }
 
   getDaysToEvent(): number {
-    let diffInDays: number = 0;
-    if(this.eventRegistrations != undefined) {
-      let eventDate = new Date(this.eventRegistrations[0].event.date);
-      let now = new Date();
-
-      let diff = eventDate.getTime() - now.getTime();
-      diffInDays = Math.ceil(diff / (1000 * 3600 * 24));
-    }
-    return diffInDays;
+    return this.statistics.daysToEvent;
   }
 }
