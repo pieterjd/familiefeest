@@ -1,0 +1,38 @@
+<div class="row mb-2">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <i class="fas fa-utensils fa-5x"></i>
+          </div>
+          <div class="col-9 text-right">
+            <h3>{{getNumberAttendees()}}</h3>
+            <p class="">{{getNumberAttendees() | i18nPlural:attendeesMapping}}</p>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <i class="fas fa-calendar-alt fa-5x"></i>
+          </div>
+          <div class="col-9 text-right">
+            <h3>{{getDaysToEvent()}}</h3>
+            <p class="">{{getDaysToEvent() | i18nPlural:daysToEventMapping}}</p>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -32,6 +32,7 @@ import {AddPaymentDialog, RegistrationOverviewComponent} from './registration-ov
 import {HomeComponent} from './home/home.component';
 import {MailService} from "../service/mail.service";
 import { HeaderComponent } from './header/header.component';
+import { StatsComponent } from './stats/stats.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { HeaderComponent } from './header/header.component';
     RegistrationOverviewComponent,
     AddPaymentDialog,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    StatsComponent
   ],
   entryComponents: [
     AddMenuDialog,
