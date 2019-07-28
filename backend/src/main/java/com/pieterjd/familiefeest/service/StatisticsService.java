@@ -38,6 +38,7 @@ public class StatisticsService {
         return Statistics.builder()
                 .numberOfAttendees(attendees)
                 .daysToEvent(days)
+                .eventDate(e.getDate())
                 .build();
     }
 }

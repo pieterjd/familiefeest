@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -13,5 +15,6 @@ import lombok.NoArgsConstructor;
 public class Statistics {
     private int numberOfAttendees;
     private long daysToEvent;
+    private Date eventDate;
 
 }

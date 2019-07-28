@@ -39,4 +39,8 @@ export class StatsComponent implements OnInit {
   getDaysToEvent(): number {
     return this.statistics.daysToEvent;
   }
+
+  getEventDate(): Date{
+    return this.statistics.eventDate;
+  }
 }
