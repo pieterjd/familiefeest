@@ -28,7 +28,7 @@
             <i class="fas fa-calendar-alt fa-5x"></i>
           </div>
           <div class="col-4 align-self-center text-center">
-            <h3>{{getEventDate() | date :'dd MMMM'}}</h3>
+            <h3>{{getEventDate() | date :'dd MMMM' | lowercase}}</h3>
             <p>{{getEventDate() | date :'yyyy'}}</p>
           </div>
           <div class="col-4 align-self-center text-right">
