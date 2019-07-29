@@ -3,8 +3,9 @@ import {Router, ActivatedRoute, ParamMap} from "@angular/router";
 import {EventRegistrationService} from "../event-registration.service";
 import {EventRegistration} from "../../model/eventregistration";
 import {PaymentService} from "../../service/payment.service";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {Payment} from "../../model/payment";
+import {MailService} from "../../service/mail.service";
 
 
 @Component({
@@ -20,7 +21,9 @@ export class RegistrationOverviewComponent implements OnInit {
               private router: Router,
               private eventRegistrationService: EventRegistrationService,
               private paymentService: PaymentService,
-              private dialog: MatDialog) {
+              private mailService: MailService,
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
 
   }
 
@@ -36,7 +39,10 @@ export class RegistrationOverviewComponent implements OnInit {
     this.update();
   }
 
-
+  sendPurchaseMail(er: EventRegistration): void {
+    this.mailService.sendPurchaseMail(er.code);
+    let snackBar = this.snackBar.open('Purchase mail sent to ' + er.user.email, null, {duration: 3000});
+  }
 
   openDialog(er: EventRegistration): void {
     console.log(er);
@@ -51,7 +57,7 @@ export class RegistrationOverviewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      this.paymentService.addPayment(data.eventRegistration.code, data.payment,this.token).subscribe(
+      this.paymentService.addPayment(data.eventRegistration.code, data.payment, this.token).subscribe(
         success => this.update(),
         error => console.log("errrrorrrr")
       );
