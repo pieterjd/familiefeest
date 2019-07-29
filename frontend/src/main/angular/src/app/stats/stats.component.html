@@ -20,18 +20,18 @@
   </div>
   -->
 
-  <div class="col-8 offset-2">
+  <div class="col-lg-8 offset-lg-2 col-sm-12">
     <div class="card">
       <div class="card-body">
         <div class="row align-self-center">
-          <div class="col-4 align-self-center text-left">
+          <div class="col-lg-4  col-sm-12 align-self-center text-center">
             <i class="fas fa-calendar-alt fa-5x"></i>
           </div>
-          <div class="col-4 align-self-center text-center">
+          <div class="col-lg-4 col-sm-12 align-self-center text-center">
             <h3>{{getEventDate() | date :'dd MMMM' | lowercase}}</h3>
             <p>{{getEventDate() | date :'yyyy'}}</p>
           </div>
-          <div class="col-4 align-self-center text-right">
+          <div class="col-lg-4 col-sm-12 align-self-center text-center">
             <h3>{{getDaysToEvent()}}</h3>
             <p class="">{{getDaysToEvent() | i18nPlural:daysToEventMapping}}</p>
 
