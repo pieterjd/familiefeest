@@ -35,7 +35,11 @@
     <td>{{er.amountAlreadyPaid | currency :'EUR'}}</td>
     <td>{{er.openAmount | currency :'EUR'}}</td>
     <td>
-      <button class="btn btn-outline-primary btn-block" (click)="openDialog(er)">Add payment</button>
+      <button
+        class="btn btn-outline-primary btn-block"
+        (click)="openDialog(er)"
+        *ngIf="!(er.purchasedItems.length>0 && er.openAmount <= 0)">Add payment
+      </button>
     </td>
     <td>
       <button class="btn btn-outline-primary btn-block" (click)="sendPurchaseMail(er)">Send purchasemail</button>
