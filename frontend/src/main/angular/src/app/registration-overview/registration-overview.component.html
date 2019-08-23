@@ -13,6 +13,7 @@
   <tr>
     <th scope="col">Code</th>
     <th scope="col">name</th>
+    <th scope="col">will attend?</th>
     <th scope="col">purchases</th>
     <th scope="col">total</th>
     <th scope="col">paid</th>
@@ -24,6 +25,7 @@
   <tr *ngFor="let er of eventRegistrations">
     <td>{{er.code}}</td>
     <td>{{er.user.fullName}}</td>
+    <td>{{er.willAttend}}</td>
     <td>
       <ol>
         <li *ngFor="let purchase of er.purchasedItems">

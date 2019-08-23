@@ -10,4 +10,5 @@ export class EventRegistration {
   purchaseTotal: number;
   amountAlreadyPaid: number;
   openAmount: number;
+  willAttend: boolean;
 }

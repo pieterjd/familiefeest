@@ -33,6 +33,8 @@ public class EventRegistration {
     @OneToMany(mappedBy = "eventRegistration")
     @JsonIgnore
     private List<Payment> payments;
+    @Enumerated(EnumType.STRING)
+    private AttendanceStatus attendanceStatus;
 
     @JsonProperty
     /**
@@ -61,6 +63,12 @@ public class EventRegistration {
     @JsonProperty
     public Double openAmount(){
         return purchaseTotal() - amountAlreadyPaid();
+    }
+
+    @JsonProperty
+    public boolean willAttend(){
+        return getAttendanceStatus() == AttendanceStatus.PRESENT ||
+                getPurchasedItems().size()>0;
     }
 
 
