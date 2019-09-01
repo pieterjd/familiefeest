@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,6 +37,25 @@ public class MailController {
         mailService.sendPurchaseConfirmationMail(er);
     }
 
+    @PostMapping("/finalremindermail/{testing}")
+    public List<String> sendFinalReminder(@PathVariable(required = false) boolean testing,
+                                          @RequestBody List<String> eventCodes,
+                                          @RequestHeader(name = "secret-token", required = false) String secretToken) throws MessagingException {
+
+        log.info("received postman token: " + secretToken);
+        if (secretToken != null && !expectedSecretToken.equals(secretToken)) {
+            throw new RuntimeException("Access denied");
+        }
+        List<String> sentTo = new ArrayList<>();
+        for (String eventCode : eventCodes) {
+            EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
+            if (mailService.sendFinalReminderMail(er, testing)) {
+                sentTo.add(er.getCode());
+            }
+        }
+        return sentTo;
+    }
+
     @PostMapping("/invitationmail")
     public void sendInvitationConfirmation(@RequestBody List<String> eventCodes,
                                            @RequestHeader(name = "secret-token", required = false) String secretToken) throws MessagingException {
@@ -44,7 +64,7 @@ public class MailController {
         if (secretToken != null && !expectedSecretToken.equals(secretToken)) {
             throw new RuntimeException("Access denied");
         }
-        for(String eventCode: eventCodes){
+        for (String eventCode : eventCodes) {
             EventRegistration er = eventRegistrationRepository.findByCodeEquals(eventCode).orElseThrow(() -> new RuntimeException("invalid eventcode"));
             mailService.sendInvitationMail(er);
         }

@@ -1,5 +1,6 @@
 package com.pieterjd.familiefeest.service;
 
+import com.pieterjd.familiefeest.domain.AttendanceStatus;
 import com.pieterjd.familiefeest.domain.EventRegistration;
 import lombok.extern.log4j.Log4j2;
 import org.jtwig.JtwigModel;
@@ -53,6 +54,20 @@ public class MailService {
     public void sendPurchaseConfirmationMail(EventRegistration er) throws MessagingException {
         sendMail(er, String.format("templates/%s.confirmation.twig",er.getEvent().getId().toString()));
         log.info(String.format("Confirmation mail sent to %s",er.getUser().getEmail()));
+    }
+
+
+    public boolean sendFinalReminderMail(EventRegistration er, boolean testing) throws MessagingException {
+        boolean sent = false;
+
+        if(er.getAttendanceStatus() == AttendanceStatus.UNKNOWN) {
+            sent = true;
+            if(!testing){
+                sendMail(er, String.format("templates/%s.finalreminder.twig", er.getEvent().getId().toString()));
+                log.info(String.format("Final reminder mail sent to %s", er.getUser().getEmail()));
+            }
+        }
+        return sent;
     }
 
     private MimeMessageHelper getMimeMessageHelper(EventRegistration er) throws MessagingException {
