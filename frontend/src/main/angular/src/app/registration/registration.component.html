@@ -1,5 +1,10 @@
-<div class="row">
-  <mat-horizontal-stepper [linear]="true" class="col" labelPosition="bottom">
+<div class="row mb-2">
+
+    <div class="alert alert-warning col-lg-6 offset-3 align-self-center text-center" role="alert" *ngIf="!isBeforeRegistrationDeadline()">
+      Registreren is helaas niet meer mogelijk!
+    </div>
+
+  <mat-horizontal-stepper [linear]="true" class="col" labelPosition="bottom" *ngIf="isBeforeRegistrationDeadline()">
     <mat-step label="Vul je unieke code in">
       <div>
         <div class="alert alert-info" role="alert">

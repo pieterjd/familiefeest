@@ -40,6 +40,12 @@ export class RegistrationComponent implements OnInit {
     this.confirmationComponent.refresh();
   }
 
+  isBeforeRegistrationDeadline(): boolean {
+    return this.eventRegistration
+      ? new Date() <= this.eventRegistration.event.registrationDeadline
+      : false;
+  }
+
   next(): void{
     this.stepper.next();
   }

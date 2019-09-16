@@ -32,4 +32,8 @@ public class Event {
     private Date date;
     @OneToMany
     private List<EventItem> eventItems;
+
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date registrationDeadline;
 }
